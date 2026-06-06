@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zyflow — Services Website
 
-## Getting Started
+Marketing site for Zyflow's **deep agents**: production AI agents that own entire
+business workflows end-to-end (lending, delivery, product specs, content), with a
+human always in command.
 
-First, run the development server:
+Live roster of agents (grounded in the real Hermes agent capabilities):
+
+| Agent | Codename | Domain |
+| --- | --- | --- |
+| Loan Broker & Lender Agent | Sterling | Commercial lending |
+| Project Management Agent | Steward | Delivery & operations |
+| Product Manager Agent | Atlas | Requirements & specs |
+| Content Director & Creator | Nova | Content at scale |
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** — design tokens live in `src/app/globals.css` (`@theme`)
+- **React Three Fiber + drei + postprocessing** — the hero "agent core" 3D scene
+- **Motion** (`motion/react`) — scroll reveals and load animations
+- **Lenis** — smooth momentum scrolling
+
+## Design system — "Obsidian Observatory"
+
+Dark, cinematic, premium. Citron (`--color-citron`) signal + glacier-blue glow on an
+obsidian base. Type: **Bricolage Grotesque** (display) / **Hanken Grotesk** (body) /
+**JetBrains Mono** (technical labels).
+
+The 3D hero is **lazy-loaded after first paint**, **disabled on mobile and
+`prefers-reduced-motion`**, and falls back to a CSS aurora — so Lighthouse stays high.
+
+## Local setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm start        # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    layout.tsx                  # fonts, metadata, nav/footer, smooth scroll
+    page.tsx                    # homepage (composed of home/* sections)
+    solutions/loan-broker/      # landing page #1 (the template for the rest)
+    api/lead/route.ts           # lead capture (validates, persists, optional webhook)
+    sitemap.ts / robots.ts      # SEO
+  components/
+    site/                       # Nav, Footer, Reveal, SmoothScroll
+    ui/Primitives.tsx           # Button, Section, Eyebrow
+    three/                      # AgentCore (R3F scene) + lazy canvas wrapper
+    home/                       # homepage sections
+    loan/                       # loan-broker-specific visuals
+    leadform/LeadForm.tsx       # the lead-capture form
+  lib/
+    agents.ts                   # single source of truth for the agent roster
+    site.ts                     # nav + brand config
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Lead capture
 
-## Learn More
+`POST /api/lead` validates name + email, drops honeypot submissions, appends to
+`data/leads.jsonl` (git-ignored, best-effort), and forwards to `LEAD_WEBHOOK_URL` if
+set. Point `LEAD_WEBHOOK_URL` at a CRM / Slack / Zapier endpoint in production.
 
-To learn more about Next.js, take a look at the following resources:
+## Adding the remaining landing pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`/solutions/loan-broker` is the reference template. The other three (project
+management → Steward, product manager → Atlas, content → Nova) follow the same section
+structure, driven by data in `src/lib/agents.ts`.

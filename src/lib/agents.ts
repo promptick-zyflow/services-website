@@ -55,6 +55,7 @@ export const agents: Agent[] = [
     ],
     accent: "glacier",
     status: "live",
+    href: "/solutions/project-management",
     metric: { value: "Hourly", label: "board health sweeps" },
   },
   {
@@ -75,6 +76,7 @@ export const agents: Agent[] = [
     ],
     accent: "citron",
     status: "live",
+    href: "/solutions/product-manager",
     metric: { value: "30–50%", label: "of PM time is spec-writing" },
   },
   {
@@ -95,6 +97,7 @@ export const agents: Agent[] = [
     ],
     accent: "spark",
     status: "live",
+    href: "/solutions/content",
     metric: { value: "QA-gated", label: "nothing ships unreviewed" },
   },
 ];

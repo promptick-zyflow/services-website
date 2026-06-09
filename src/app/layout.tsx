@@ -4,6 +4,7 @@ import "./globals.css";
 import { site } from "@/lib/site";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { CTA } from "@/components/site/CTA";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
 
 const bricolage = Bricolage_Grotesque({
@@ -63,6 +64,7 @@ export default function RootLayout({
         <SmoothScroll />
         <Nav />
         <main>{children}</main>
+        <CTA />
         <Footer />
       </body>
     </html>

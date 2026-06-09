@@ -28,9 +28,9 @@ export function Orchestration() {
   return (
     <Section id="orchestration" className="py-28">
       <div className="rounded-3xl border border-line bg-gradient-to-b from-surface to-ink/60 p-8 sm:p-12 lg:p-16">
-        <div className="max-w-2xl">
+        <div className="max-w-4xl">
           <Eyebrow>How it works</Eyebrow>
-          <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+          <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:whitespace-nowrap">
             A reliable loop, not a black box.
           </h2>
           <p className="mt-6 text-muted">

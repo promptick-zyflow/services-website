@@ -6,12 +6,13 @@ export function Footer() {
   return (
     <footer className="relative mt-32 border-t border-line">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12">
+        
+
+
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <span className="font-display text-2xl font-bold tracking-tight">
-              {site.name}
-            </span>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
+            <img src="/logo.png" alt="Zyflow Logo" className="h-8 w-auto object-contain" />
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
               {site.tagline}
             </p>
             <p className="mt-6 text-sm text-faint">

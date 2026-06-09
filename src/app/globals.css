@@ -19,9 +19,11 @@
   --color-faint: #6b6e78;
 
   /* Accents */
-  --color-citron: #c9f25e;
-  --color-citron-deep: #a6d138;
-  --color-glacier: #8fb2ff;
+  --color-primary: #5e90f6;
+  --color-secondary: #c0d5ff;
+  --color-citron: var(--color-primary);
+  --color-citron-deep: #4b73c6;
+  --color-glacier: var(--color-secondary);
   --color-spark: #ff8a4c;
 
   /* Type */
@@ -91,14 +93,14 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Citron->glacier gradient text */
+/* Primary->Secondary gradient text */
 .flux-text {
   background: linear-gradient(
     100deg,
     var(--color-bone) 0%,
     var(--color-bone) 38%,
-    var(--color-citron) 68%,
-    var(--color-glacier) 100%
+    var(--color-primary) 68%,
+    var(--color-secondary) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;

@@ -22,10 +22,10 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const base =
-    "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ease-[var(--ease-out-expo)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-citron";
+    "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ease-[var(--ease-out-expo)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]";
   const styles = {
     primary:
-      "bg-citron text-[#0a0a0a] hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-8px_rgba(201,242,94,0.5)]",
+      "bg-[var(--color-primary)] text-[#0a0a0a] hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-8px_var(--color-primary)]",
     ghost:
       "bg-surface-2 text-bone hover:bg-[#1c2029] border border-line",
     line: "text-bone border border-line hover:border-bone/40 hover:bg-white/[0.03]",
@@ -87,7 +87,7 @@ export function Eyebrow({
 }) {
   return (
     <p className={cx("eyebrow flex items-center gap-3", className)}>
-      <span className="inline-block h-px w-8 bg-citron/60" aria-hidden />
+      <span className="inline-block h-px w-8 opacity-60" style={{ backgroundColor: "var(--color-primary)" }} aria-hidden />
       {children}
     </p>
   );

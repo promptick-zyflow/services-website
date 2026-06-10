@@ -1,40 +1,38 @@
-# Requirements Index — services-website
+# Requirements Index — zyflow-landing
 
-> Maintained by Atlas. The rolled-up view of every requirement in this repo. Last updated 2026-06-08.
+> Maintained by Atlas. The rolled-up view of every requirement in this repo. Last updated 2026-06-10.
 > Note: this is a newly auto-discovered repo. No `product-context` file yet — see Sajal for direction.
-> Repo has an orphan-duplicate pattern: an older placeholder epic (#1) and 5 older subtask stubs (#2–#6) that predate the canonical epic (#7) and its 5 spec-ready subtasks (#8–#12). Recommended handling: close the older ones as duplicates (delivery decision — Steward/Sajal, not Atlas).
+> Repo has an orphan-duplicate pattern: an older placeholder epic (#1) and 5 older subtask stubs (#2–#6) that predate the canonical epic (#7) and its 5 spec-ready subtasks (#8–#12). Recommended handling: close #1, #2, #3, #4, #5, #6 as duplicates (Steward/Sajal delivery decision — not Atlas's call). Atlas does not act on the duplicates per the "rollup-only" pattern.
 
-## Epics (in-ticket)
-| Requirement | Tracking issue | Sub-tasks | Status |
-|---|---|---|---|
-| Services Website v1 — AI Solutions & Deep Agent Landing Pages | [#7](https://github.com/promptick-zyflow/services-website/issues/7) | 5 spec-ready (#8–#12) | ✅ spec-ready (promoted 2026-06-08) |
+## Canonical structure
 
-## Sub-tasks (under epic #7)
+### Epic (spec-ready)
 | # | Title | Status |
 |---|---|---|
-| [#8](https://github.com/promptick-zyflow/services-website/issues/8) | KT & Handover: Ankit → Sahil (services-website access, architecture, current state) | ✅ spec-ready |
-| [#9](https://github.com/promptick-zyflow/services-website/issues/9) | Landing Page: Deep Agent for Loan Brokers & Lenders | ✅ spec-ready |
-| [#10](https://github.com/promptick-zyflow/services-website/issues/10) | Landing Page: Project Management Deep Agent for Businesses | ✅ spec-ready |
-| [#11](https://github.com/promptick-zyflow/services-website/issues/11) | Landing Page: Product Manager Deep Agent (Requirements Documentation) | ✅ spec-ready |
-| [#12](https://github.com/promptick-zyflow/services-website/issues/12) | Landing Page: Content Director & Creator Deep Agents | ✅ spec-ready |
+| [#7](https://github.com/promptick-zyflow/zyflow-landing/issues/7) | Epic: Services Website v1 — AI Solutions & Deep Agent Landing Pages | spec-ready |
 
-## Orphan duplicates — flagged for Steward/Sajal (delivery decision)
-| Issue | Title | Likely duplicate of |
+### Sub-tasks (spec-ready, in-body `ATLAS:REQUIREMENT`)
+| # | Title | Outcome / one-liner |
 |---|---|---|
-| [#1](https://github.com/promptick-zyflow/services-website/issues/1) | [Epic] Services Website Project (older placeholder, no sub-issues) | [#7](https://github.com/promptick-zyflow/services-website/issues/7) |
-| [#2](https://github.com/promptick-zyflow/services-website/issues/2) | 1. KT/Handover Ankit → Sahil (older placeholder) | [#8](https://github.com/promptick-zyflow/services-website/issues/8) |
-| [#3](https://github.com/promptick-zyflow/services-website/issues/3) | 2. Deep Agent Landing Page: Loan Brokers/Lenders (older stub) | [#9](https://github.com/promptick-zyflow/services-website/issues/9) |
-| [#4](https://github.com/promptick-zyflow/services-website/issues/4) | 3. Project Management Landing Page (older stub) | [#10](https://github.com/promptick-zyflow/services-website/issues/10) |
-| [#5](https://github.com/promptick-zyflow/services-website/issues/5) | 4. Product Manager Agent Landing Page (older stub) | [#11](https://github.com/promptick-zyflow/services-website/issues/11) |
-| [#6](https://github.com/promptick-zyflow/services-website/issues/6) | 5. Content Director/Creator Landing Page (older stub) | [#12](https://github.com/promptick-zyflow/services-website/issues/12) |
+| [#8](https://github.com/promptick-zyflow/zyflow-landing/issues/8) | KT & Handover: Ankit → Sahil | Sahil onboarded, README updated, can deploy independently |
+| [#9](https://github.com/promptick-zyflow/zyflow-landing/issues/9) | Landing Page: Deep Agent for Loan Brokers & Lenders | High-converting page for Sterling-style lending agent |
+| [#10](https://github.com/promptick-zyflow/zyflow-landing/issues/10) | Landing Page: Project Management Deep Agent for Businesses | Dev + ops task board coverage demonstrated on a page |
+| [#11](https://github.com/promptick-zyflow/zyflow-landing/issues/11) | Landing Page: Product Manager Deep Agent (Requirements Documentation) | Turn vague ideas into production-ready specs in minutes |
+| [#12](https://github.com/promptick-zyflow/zyflow-landing/issues/12) | Landing Page: Content Director & Creator Deep Agents | Enterprise-grade content engine pitch page |
 
-## Open repo questions (route to Sajal)
-- This repo is **auto-discovered** and is **not in `projects.yaml` explicit list**. Should it be added? Should a `product-context/services-website.md` be authored so Atlas's questions are sharp instead of generic? (Note: requirement content for current tickets is well-defined; product-context is mostly about routing authorities + glossary.)
-- #1 and #2–#6 are **orphan duplicate stubs** of #7 and #8–#12. Atlas does not own closing duplicates (that's a Steward/Sajal delivery call). Action recommended in the sweep summary.
+## Likely duplicates (do not draft — close-as-dup is a Steward/Sajal decision)
+| # | Title | Likely duplicate of |
+|---|---|---|
+| [#1](https://github.com/promptick-zyflow/zyflow-landing/issues/1) | [Epic] Services Website Project (older) | [#7](https://github.com/promptick-zyflow/zyflow-landing/issues/7) |
+| [#2](https://github.com/promptick-zyflow/zyflow-landing/issues/2) | 1. KT/Handover (older) | [#8](https://github.com/promptick-zyflow/zyflow-landing/issues/8) |
+| [#3](https://github.com/promptick-zyflow/zyflow-landing/issues/3) | 2. Deep Agent Landing Page — Loan Brokers (older) | [#9](https://github.com/promptick-zyflow/zyflow-landing/issues/9) |
+| [#4](https://github.com/promptick-zyflow/zyflow-landing/issues/4) | 3. Project Mgmt Deep Agent Landing Page (older) | [#10](https://github.com/promptick-zyflow/zyflow-landing/issues/10) |
+| [#5](https://github.com/promptick-zyflow/zyflow-landing/issues/5) | 4. Product Manager Agent Landing Page (older) | [#11](https://github.com/promptick-zyflow/zyflow-landing/issues/11) |
+| [#6](https://github.com/promptick-zyflow/zyflow-landing/issues/6) | 5. Content Director/Creator Deep Agent Landing Page (older) | [#12](https://github.com/promptick-zyflow/zyflow-landing/issues/12) |
 
-## Reference docs
-*None yet* — the SOW/doc-worthy repo is `tripare` and `industry-specific-agents`; landing-page work here is execution-level.
+## Open question for Sajal
+- **Repo registration.** `zyflow-landing` is currently auto-discovered, not in the explicit `repos` list. Confirm: should it be added to `projects.yaml` (with a `product-context` authored), or treated as the same project as `services-website` (rename/repo-org move)?
 
 ---
 
-*Owned by Atlas (requirement). Delivery metadata (priority/estimate/assignee/iteration/status) is owned by Steward.*
+*Index authored by Atlas. Source: this repo's issues (last full sweep 2026-06-10).*

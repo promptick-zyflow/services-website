@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { Section } from "@/components/ui/Primitives";
+import { AgentCoreCanvas } from "@/components/three/AgentCoreCanvas";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -10,9 +11,16 @@ export function Hero() {
     <section className="relative min-h-screen overflow-hidden pt-16">
       {/* Background grid */}
       <div className="pointer-events-none absolute inset-0 grid-lines opacity-60" />
+
+      {/* Animated 3D agent core — full-bleed background, offset to the right */}
+      <div className="absolute inset-0 lg:left-[42%]">
+        <AgentCoreCanvas />
+      </div>
+
+      {/* Fade the canvas into the page bottom */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-obsidian to-transparent" />
 
-      <Section className="relative grid min-h-[calc(100vh-4rem)] items-center lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20">
+      <Section className="relative flex min-h-[calc(100vh-4rem)] items-center">
         <div className="max-w-2xl py-20 lg:py-32">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -117,83 +125,6 @@ export function Hero() {
             ))}
           </motion.dl>
         </div>
-
-        {/* Right side Dashboard Mockup */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease, delay: 0.2 }}
-          className="relative hidden lg:block"
-        >
-          {/* Decorative glow */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[450px] w-[450px] rounded-full opacity-20 blur-[100px]" style={{ backgroundColor: "var(--color-primary)" }} />
-          
-          {/* Dashboard glass card */}
-          <div className="relative rounded-3xl border border-line bg-surface/60 p-7 backdrop-blur-2xl shadow-2xl">
-            {/* Header */}
-            <div className="flex items-center justify-between border-b border-line pb-5">
-              <div className="flex items-center gap-3">
-                <div className="flex gap-2">
-                  <div className="h-3 w-3 rounded-full bg-line" />
-                  <div className="h-3 w-3 rounded-full bg-line" />
-                  <div className="h-3 w-3 rounded-full bg-line" />
-                </div>
-                <div className="ml-4 font-mono text-xs uppercase tracking-widest text-faint">Agent Orchestrator</div>
-              </div>
-              <div className="flex h-6 items-center rounded-full bg-black/40 border border-line px-3 text-[10px] font-bold tracking-widest uppercase text-bone">
-                <span className="mr-2 h-1.5 w-1.5 animate-pulse rounded-full" style={{ backgroundColor: "var(--color-primary)" }} />
-                System Active
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="mt-7 flex flex-col gap-5">
-              {/* Active Task */}
-              <div className="rounded-2xl border border-line bg-ink/70 p-5 shadow-inner">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xs font-medium text-muted">Current Workflow</span>
-                  <span className="text-xs font-semibold" style={{ color: "var(--color-secondary)" }}>Processing...</span>
-                </div>
-                <div className="h-2.5 w-full rounded-full bg-line overflow-hidden">
-                  <div className="h-full w-3/4 bg-gradient-to-r from-transparent animate-pulse" style={{ backgroundImage: "linear-gradient(to right, transparent, var(--color-primary), var(--color-secondary))" }} />
-                </div>
-              </div>
-
-              {/* Logs */}
-              <div className="flex flex-col gap-3 font-mono text-xs text-muted bg-obsidian/40 rounded-2xl p-5 border border-line/50">
-                <div className="flex items-center gap-3">
-                  <span style={{ color: "var(--color-primary)" }}>[09:41:02]</span>
-                  <span>Ingested application from external client...</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span style={{ color: "var(--color-primary)" }}>[09:41:05]</span>
-                  <span>Enriching financial data...</span>
-                </div>
-                <div className="flex items-center gap-3 text-bone">
-                  <span style={{ color: "var(--color-secondary)" }}>[09:41:12]</span>
-                  <span>Detected 5 matching internal products.</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span style={{ color: "var(--color-primary)" }}>[09:41:14]</span>
-                  <span className="animate-pulse">Screening against decline criteria...</span>
-                </div>
-              </div>
-
-              {/* Stats */}
-              <div className="mt-2 grid grid-cols-2 gap-5">
-                <div className="rounded-2xl border border-line bg-surface p-5">
-                  <div className="text-3xl font-bold text-bone">98.4%</div>
-                  <div className="mt-2 text-[10px] uppercase tracking-wider text-muted font-medium">Automation Rate</div>
-                </div>
-                <div className="rounded-2xl border border-line bg-surface p-5 relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-5" style={{ backgroundColor: "var(--color-primary)" }} />
-                  <div className="relative text-3xl font-bold" style={{ color: "var(--color-secondary)" }}>14m 20s</div>
-                  <div className="relative mt-2 text-[10px] uppercase tracking-wider text-muted font-medium">Avg Resolution Time</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </Section>
     </section>
   );

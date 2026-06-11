@@ -6,9 +6,11 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
-const CITRON = "#c9f25e";
-const GLACIER = "#8fb2ff";
-const SPARK = "#ff8a4c";
+// Pulled from the site's blue theme tokens (see globals.css):
+//   --color-primary   #5e90f6   --color-secondary #c0d5ff   --color-spark #ff8a4c
+const PRIMARY = "#5e90f6"; // core / key light
+const SECONDARY = "#c0d5ff"; // wireframe, dust, fill light
+const SPARK = "#ff8a4c"; // single warm accent node
 
 /* The glowing, breathing core. */
 function Core() {
@@ -29,8 +31,8 @@ function Core() {
       <Float speed={1.4} rotationIntensity={0.4} floatIntensity={0.6}>
         <Icosahedron ref={inner} args={[1, 6]}>
           <MeshDistortMaterial
-            color={CITRON}
-            emissive={CITRON}
+            color={PRIMARY}
+            emissive={PRIMARY}
             emissiveIntensity={0.55}
             roughness={0.25}
             metalness={0.7}
@@ -40,7 +42,7 @@ function Core() {
         </Icosahedron>
         <Icosahedron ref={wire} args={[1.45, 1]}>
           <meshBasicMaterial
-            color={GLACIER}
+            color={SECONDARY}
             wireframe
             transparent
             opacity={0.18}
@@ -56,10 +58,10 @@ function OrbitNodes() {
   const group = useRef<THREE.Group>(null);
   const nodes = useMemo(
     () => [
-      { r: 2.4, speed: 0.5, color: CITRON, y: 0.2, phase: 0 },
-      { r: 2.9, speed: -0.35, color: GLACIER, y: -0.4, phase: 2 },
+      { r: 2.4, speed: 0.5, color: PRIMARY, y: 0.2, phase: 0 },
+      { r: 2.9, speed: -0.35, color: SECONDARY, y: -0.4, phase: 2 },
       { r: 2.2, speed: 0.42, color: SPARK, y: 0.6, phase: 4 },
-      { r: 3.1, speed: -0.28, color: GLACIER, y: -0.1, phase: 1 },
+      { r: 3.1, speed: -0.28, color: SECONDARY, y: -0.1, phase: 1 },
     ],
     []
   );
@@ -88,15 +90,22 @@ function OrbitNodes() {
   );
 }
 
+/* Deterministic pseudo-random in [0,1) — keeps the dust stable across
+   renders and satisfies the react-hooks/purity rule (no Math.random()). */
+function hashRand(n: number) {
+  const x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
+  return x - Math.floor(x);
+}
+
 /* Surrounding particle dust. */
 function Dust({ count = 700 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const radius = 3.2 + Math.random() * 4.5;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
+      const radius = 3.2 + hashRand(i * 3) * 4.5;
+      const theta = hashRand(i * 3 + 1) * Math.PI * 2;
+      const phi = Math.acos(2 * hashRand(i * 3 + 2) - 1);
       arr[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
       arr[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta) * 0.6;
       arr[i * 3 + 2] = radius * Math.cos(phi);
@@ -118,7 +127,7 @@ function Dust({ count = 700 }: { count?: number }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.022}
-        color={GLACIER}
+        color={SECONDARY}
         transparent
         opacity={0.5}
         sizeAttenuation
@@ -151,8 +160,8 @@ export default function AgentCore() {
       style={{ background: "transparent" }}
     >
       <ambientLight intensity={0.4} />
-      <pointLight position={[5, 5, 5]} intensity={40} color={CITRON} />
-      <pointLight position={[-6, -3, -4]} intensity={30} color={GLACIER} />
+      <pointLight position={[5, 5, 5]} intensity={40} color={PRIMARY} />
+      <pointLight position={[-6, -3, -4]} intensity={30} color={SECONDARY} />
       <Rig>
         <Core />
         <OrbitNodes />

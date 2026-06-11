@@ -3,10 +3,14 @@ import type { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://promptick.ai";
   const pages = [
-    "/solutions/loan-broker",
-    "/solutions/project-management",
-    "/solutions/product-manager",
-    "/solutions/content",
+    "/agents/lending",
+    "/agents/delivery",
+    "/agents/product",
+    "/agents/content",
+    "/services",
+    "/products/promptick",
+    "/about",
+    "/contact",
   ];
   return [
     { url: base, changeFrequency: "weekly", priority: 1 },

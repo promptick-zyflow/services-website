@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Contact } from "@/components/home/Contact";
-import { ContentLoop } from "@/components/visuals/ContentLoop";
+import { ContentCycle } from "@/components/visuals/ContentCycle";
 import { Section, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 import { Icon } from "@/components/ui/Icon";
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "AI Content Director & Creator Agents",
   description:
     "A two-agent content engine: a Director sets strategy, calendar and brand voice; a Creator produces articles, social, email and video on a single deterministic plan. Every output passes a quality gate before it ships.",
-  alternates: { canonical: "/solutions/content" },
+  alternates: { canonical: "/agents/content" },
 };
 
 const director = [
@@ -59,7 +59,7 @@ export default function ContentPage() {
           { v: "One voice", l: "brand consistency, enforced" },
           { v: "QA-gated", l: "nothing ships unreviewed" },
         ]}
-        visual={<ContentLoop />}
+        visual={<ContentCycle />}
       />
 
       <Banner

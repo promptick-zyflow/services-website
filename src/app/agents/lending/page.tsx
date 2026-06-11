@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
-import { CaseFlow } from "@/components/loan/CaseFlow";
+import { LendingFunnel } from "@/components/visuals/LendingFunnel";
 import { Contact } from "@/components/home/Contact";
 import { getAgent } from "@/lib/agents";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "AI Loan Broker & Lender Agent",
   description:
     "Sterling turns a 4–6 hour pre-submission workflow into 15–20 minutes: document parsing, Companies House enrichment, product detection, decline screening and a lender-ready case pack. It recommends; you decide.",
-  alternates: { canonical: "/solutions/loan-broker" },
+  alternates: { canonical: "/agents/lending" },
 };
 
 export default function LoanBrokerPage() {
@@ -59,10 +59,9 @@ function Hero() {
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
             Sterling runs a broker&rsquo;s entire pre-submission workflow
-            autonomously — capturing applications, enriching financials,
-            detecting the right products, screening against lender rules and
-            chasing missing documents. You get a structured case pack ready to
-            submit. It recommends; you always decide.
+            autonomously — enriching financials, detecting the right products,
+            screening against lender rules and chasing missing documents. You
+            get a submission-ready case pack. It recommends; you always decide.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Button href="#contact" variant="primary">
@@ -86,7 +85,7 @@ function Hero() {
           </dl>
         </div>
         <div className="flex justify-center lg:justify-end">
-          <CaseFlow />
+          <LendingFunnel />
         </div>
       </Section>
     </section>

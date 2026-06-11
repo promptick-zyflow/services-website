@@ -42,3 +42,6 @@ next-env.d.ts
 
 # captured leads (local persistence)
 data/
+
+# playwright-mcp browser session artifacts
+/.playwright-mcp/

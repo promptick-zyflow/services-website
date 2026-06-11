@@ -6,7 +6,8 @@ export type Agent = {
   codename: string; // the agent's real name
   name: string; // marketing role title
   domain: string; // short category
-  tagline: string;
+  audience: string; // who it's for — the at-rest card chip (e.g. "For commercial finance")
+  tagline: string; // the single at-rest outcome line
   blurb: string;
   capabilities: string[];
   accent: "citron" | "glacier" | "spark";
@@ -21,7 +22,8 @@ export const agents: Agent[] = [
     codename: "Sterling",
     name: "Loan Broker & Lender Agent",
     domain: "Commercial lending",
-    tagline: "From application to lender-ready case in minutes, not hours.",
+    audience: "For commercial finance",
+    tagline: "Application to lender-ready case in minutes, not hours.",
     blurb:
       "Sterling runs a broker's entire pre-submission workflow autonomously: it captures borrower applications, enriches them with Companies House data, auto-detects which products fit, screens against lender decline rules, and chases missing documents — compiling a structured case pack ready for submission. It recommends; the broker always decides.",
     capabilities: [
@@ -34,7 +36,7 @@ export const agents: Agent[] = [
     ],
     accent: "citron",
     status: "live",
-    href: "/solutions/loan-broker",
+    href: "/agents/lending",
     metric: { value: "15–20 min", label: "per case, vs. 4–6 hrs manual" },
   },
   {
@@ -42,6 +44,7 @@ export const agents: Agent[] = [
     codename: "Steward",
     name: "Project Management Agent",
     domain: "Delivery & operations",
+    audience: "For delivery teams",
     tagline: "An always-on PM that runs the board so your team can ship.",
     blurb:
       "Steward owns your delivery board end-to-end. Every hour it syncs every repo, enforces complete metadata, tracks velocity and burndown, flags overdue and stalled work, and escalates risk before it becomes a missed deadline. It doesn't build features — it runs the ship.",
@@ -55,7 +58,7 @@ export const agents: Agent[] = [
     ],
     accent: "glacier",
     status: "live",
-    href: "/solutions/project-management",
+    href: "/agents/delivery",
     metric: { value: "Hourly", label: "board health sweeps" },
   },
   {
@@ -63,7 +66,8 @@ export const agents: Agent[] = [
     codename: "Atlas",
     name: "Product Manager Agent",
     domain: "Requirements & specs",
-    tagline: "Turn vague ideas into production-ready specs in minutes.",
+    audience: "For product teams",
+    tagline: "Vague ideas into production-ready specs in minutes.",
     blurb:
       "Atlas reads a thin ticket and either drafts a well-formed requirement — problem, scope, MVP, acceptance criteria, success metrics — or asks the sharp clarifying questions that close the gap. It never fabricates: proposals are marked PROPOSED until a human confirms, and tickets are only flagged spec-ready when the requirement is truly knowable.",
     capabilities: [
@@ -76,7 +80,7 @@ export const agents: Agent[] = [
     ],
     accent: "citron",
     status: "live",
-    href: "/solutions/product-manager",
+    href: "/agents/product",
     metric: { value: "30–50%", label: "of PM time is spec-writing" },
   },
   {
@@ -84,7 +88,8 @@ export const agents: Agent[] = [
     codename: "Nova",
     name: "Content Director & Creator Agents",
     domain: "Content at scale",
-    tagline: "A two-agent content engine: strategy that directs, production that delivers.",
+    audience: "For content teams",
+    tagline: "Strategy that directs, production that delivers.",
     blurb:
       "A Director sets strategy, calendar and brand voice; a Creator produces the work — from long-form to social-native video built on a single deterministic production plan. Every output passes a quality gate before it ships: on-brand, reviewed frame-by-frame, with humans in the loop.",
     capabilities: [
@@ -97,7 +102,7 @@ export const agents: Agent[] = [
     ],
     accent: "spark",
     status: "live",
-    href: "/solutions/content",
+    href: "/agents/content",
     metric: { value: "QA-gated", label: "nothing ships unreviewed" },
   },
 ];

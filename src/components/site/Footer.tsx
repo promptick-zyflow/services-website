@@ -9,7 +9,7 @@ export function Footer() {
         
 
 
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_0.8fr_0.8fr]">
           <div>
             <img src="/logo.png" alt="Zyflow Logo" className="h-8 w-auto object-contain" />
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
@@ -46,9 +46,9 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="eyebrow mb-5">Company</p>
+            <p className="eyebrow mb-5">Services</p>
             <ul className="space-y-3 text-sm">
-              {site.nav.map((n) => (
+              {site.footerGroups.services.map((n) => (
                 <li key={n.href}>
                   <Link
                     href={n.href}
@@ -58,14 +58,38 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/#contact"
-                  className="text-muted transition-colors hover:text-bone"
-                >
-                  Contact
-                </Link>
-              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="eyebrow mb-5">Products</p>
+            <ul className="space-y-3 text-sm">
+              {site.footerGroups.products.map((n) => (
+                <li key={n.href}>
+                  <Link
+                    href={n.href}
+                    className="text-muted transition-colors hover:text-bone"
+                  >
+                    {n.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="eyebrow mb-5">Company</p>
+            <ul className="space-y-3 text-sm">
+              {site.footerGroups.company.map((n) => (
+                <li key={n.href}>
+                  <Link
+                    href={n.href}
+                    className="text-muted transition-colors hover:text-bone"
+                  >
+                    {n.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

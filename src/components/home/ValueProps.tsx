@@ -1,63 +1,68 @@
 import { Section, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 
+// Company-level principles — how we work across both pillars (agents and
+// services), one line each.
 const props = [
   {
     n: "01",
-    title: "They own the workflow, not a chat box",
-    body: "A copilot waits for prompts. A deep agent runs an end-to-end process on its own — ingesting inputs, taking the intermediate steps, and producing a finished result you can act on.",
+    title: "We own the outcome",
+    line: "Finished, working results you can act on — whether that’s an agent, a custom build, or your team enabled. Not a demo.",
   },
   {
     n: "02",
-    title: "Grounded, never fabricated",
-    body: "Our agents recommend; they don't invent. They mark uncertainty, ask the sharp question instead of guessing, and surface the evidence behind every output.",
+    title: "Grounded, never hype",
+    line: "We recommend on evidence, mark uncertainty and show the trail behind every output.",
   },
   {
     n: "03",
     title: "Human in command, always",
-    body: "Every consequential action passes a review gate. You approve, edit, or veto. The agent compresses the hours of work; the judgment stays with your team.",
+    line: "Every consequential action passes a review gate. You approve, edit, or veto.",
   },
   {
     n: "04",
-    title: "One orchestration layer",
-    body: "Each agent is a specialist, but they run on a shared framework with a chief-of-staff that coordinates hand-offs and cross-checks high-stakes moves.",
+    title: "Start small, scale on proof",
+    line: "One workflow, measured against your baseline. We earn each step before the next — no big-bang transformation.",
   },
 ];
 
 export function ValueProps() {
   return (
     <Section id="why" className="py-28">
-      <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
+      <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <Eyebrow>The difference</Eyebrow>
+          <Eyebrow>How we work</Eyebrow>
           <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-            Not a copilot.
+            We hand you the finished work.
             <br />
-            <span className="text-muted">A colleague that delivers.</span>
+            <span className="text-muted">Not a demo.</span>
           </h2>
-          <p className="mt-6 max-w-md text-muted">
-            Most &ldquo;AI&rdquo; tools hand you a faster way to type. Zyflow
-            agents hand you the finished work — and the audit trail to trust it.
+          <p className="mt-6 max-w-sm text-muted">
+            Agents, custom builds, or your own team enabled to run AI — however
+            we deliver, you get working outcomes measured against your baseline.
           </p>
         </div>
 
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
+        {/* Editorial rows — one principle, one line, hairline-separated */}
+        <ul className="border-t border-line">
           {props.map((p, i) => (
-            <Reveal
-              key={p.n}
-              i={i}
-              className="group relative bg-surface p-8 transition-colors duration-300 hover:bg-surface-2"
-            >
-              <span className="font-mono text-sm text-citron">{p.n}</span>
-              <h3 className="mt-5 font-display text-xl font-semibold leading-snug">
-                {p.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                {p.body}
-              </p>
+            <Reveal as="li" key={p.n} i={i}>
+              <div className="group flex gap-6 border-b border-line py-7 transition-colors duration-300 sm:gap-10 sm:py-8">
+                <span className="font-mono text-sm text-citron/70 transition-colors duration-300 group-hover:text-citron">
+                  {p.n}
+                </span>
+                <div>
+                  <h3 className="font-display text-xl font-semibold leading-snug sm:text-2xl">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-muted">
+                    {p.line}
+                  </p>
+                </div>
+              </div>
             </Reveal>
           ))}
-        </div>
+        </ul>
       </div>
     </Section>
   );

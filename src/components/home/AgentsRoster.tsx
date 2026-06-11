@@ -1,34 +1,38 @@
 import Link from "next/link";
-import { Section, Eyebrow, accentVar } from "@/components/ui/Primitives";
+import { Section, Eyebrow, accentVar, cx } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 import { agents, moreAgents, type Agent } from "@/lib/agents";
 
 export function AgentsRoster() {
+  const [flagship, ...rest] = agents;
+
   return (
     <Section id="agents" className="py-28">
-      <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-        <div>
-          <Eyebrow>The roster</Eyebrow>
-          <h2 className="mt-5 max-w-2xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-            Specialist agents for the work that runs your business.
-          </h2>
+      <div className="max-w-2xl">
+        <Eyebrow>The agents</Eyebrow>
+        <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+          Ready-made agents for the work that runs your business.
+        </h2>
+      </div>
+
+      <div className="mt-14 space-y-5">
+        {/* Sterling — the wide commercial flagship */}
+        <Reveal>
+          <AgentCard agent={flagship} featured />
+        </Reveal>
+
+        {/* The supporting three */}
+        <div className="grid gap-5 sm:grid-cols-3">
+          {rest.map((a, i) => (
+            <Reveal key={a.slug} i={i}>
+              <AgentCard agent={a} />
+            </Reveal>
+          ))}
         </div>
-        <p className="max-w-xs text-sm text-muted">
-          Each agent is purpose-built for a domain — deployed on its own, or
-          orchestrated together.
-        </p>
       </div>
 
-      <div className="mt-14 grid gap-5 lg:grid-cols-2">
-        {agents.map((a, i) => (
-          <Reveal key={a.slug} i={i % 2}>
-            <AgentCard agent={a} />
-          </Reveal>
-        ))}
-      </div>
-
-      {/* More agents teaser */}
-      <Reveal i={0}>
+      {/* More agents — quiet teaser */}
+      <Reveal>
         <div className="mt-5 grid gap-5 sm:grid-cols-2">
           {moreAgents.map((m) => (
             <div
@@ -51,34 +55,63 @@ export function AgentsRoster() {
   );
 }
 
-function AgentCard({ agent }: { agent: Agent }) {
+/* ------------------------------------------------------------------
+   Progressive-reveal card: minimal at rest (chip + name + one line),
+   capabilities + CTA reveal on hover (desktop) / shown inline (mobile).
+   Each card carries a soft, slowly-breathing gradient in its accent.
+------------------------------------------------------------------ */
+function AgentCard({ agent, featured }: { agent: Agent; featured?: boolean }) {
   const accent = accentVar(agent.accent);
   const Wrapper = agent.href ? Link : "div";
 
   return (
     <Wrapper
       href={agent.href ?? "#"}
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface p-8 transition-all duration-500 ${
-        agent.href ? "hover:-translate-y-1 hover:border-bone/20" : ""
-      }`}
+      className={cx(
+        "group relative flex flex-col overflow-hidden rounded-3xl border border-line bg-surface transition-all duration-500",
+        agent.href && "hover:-translate-y-1 hover:border-bone/25",
+        featured ? "min-h-[22rem] p-9 sm:p-12" : "min-h-[20rem] p-8"
+      )}
     >
-      {/* Accent glow */}
+      {/* Accent gradient wash — intensifies on hover */}
       <div
-        className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background: accent }}
+        className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-700 group-hover:opacity-100"
+        style={{
+          backgroundImage: `
+            radial-gradient(130% 95% at 12% 6%, color-mix(in srgb, ${accent} ${featured ? 26 : 20}%, transparent) 0%, transparent 58%),
+            radial-gradient(120% 100% at 92% 100%, color-mix(in srgb, ${accent} 12%, transparent) 0%, transparent 62%)
+          `,
+        }}
         aria-hidden
       />
-      {/* Watermark codename */}
-      <span
-        className="pointer-events-none absolute -bottom-6 right-4 select-none font-display text-8xl font-bold opacity-[0.04] transition-opacity duration-500 group-hover:opacity-[0.07]"
+      {/* Slowly-breathing organic blob */}
+      <div
+        className="card-aurora pointer-events-none absolute -inset-[35%] opacity-50 blur-3xl transition-opacity duration-700 group-hover:opacity-80"
+        style={{
+          backgroundImage: `radial-gradient(closest-side, color-mix(in srgb, ${accent} 32%, transparent), transparent)`,
+        }}
         aria-hidden
-      >
-        {agent.codename}
-      </span>
+      />
 
-      <div className="relative flex items-center justify-between">
-        <span className="eyebrow">{agent.domain}</span>
-        <span className="flex items-center gap-2 text-xs text-faint">
+      {/* Top row — audience chip + status */}
+      <div className="relative z-10 flex items-center justify-between gap-3">
+        <span className="flex flex-wrap items-center gap-2.5">
+          <span className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-xs text-bone/90 backdrop-blur-sm">
+            {agent.audience}
+          </span>
+          {featured && (
+            <span
+              className="rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest"
+              style={{
+                color: accent,
+                backgroundColor: `color-mix(in srgb, ${accent} 14%, transparent)`,
+              }}
+            >
+              Flagship
+            </span>
+          )}
+        </span>
+        <span className="flex shrink-0 items-center gap-2 text-xs text-bone/70">
           <span
             className="h-1.5 w-1.5 rounded-full"
             style={{ background: agent.status === "live" ? accent : "#5a5d66" }}
@@ -87,78 +120,75 @@ function AgentCard({ agent }: { agent: Agent }) {
         </span>
       </div>
 
-      <div className="relative mt-5 flex items-baseline gap-3">
-        <h3 className="font-display text-2xl font-bold tracking-tight">
+      {/* Name + one-line outcome, anchored low; detail rises on hover */}
+      <div className={cx("relative z-10 mt-auto", featured && "max-w-xl")}>
+        <h3
+          className={cx(
+            "font-display font-bold tracking-tight",
+            featured ? "text-4xl sm:text-5xl" : "text-2xl"
+          )}
+        >
           {agent.name}
         </h3>
-      </div>
-      <p className="relative mt-1 font-mono text-xs text-faint">
-        codename: {agent.codename}
-      </p>
+        <p
+          className={cx(
+            "mt-3 leading-relaxed text-bone/85",
+            featured ? "text-lg" : "text-sm"
+          )}
+        >
+          {agent.tagline}
+        </p>
 
-      <p
-        className="relative mt-5 text-base font-medium"
-        style={{ color: accent }}
-      >
-        {agent.tagline}
-      </p>
-      <p className="relative mt-3 text-sm leading-relaxed text-muted">
-        {agent.blurb}
-      </p>
+        {/* Progressive reveal — space is always reserved so the card never
+            changes size (no layout shift); detail fades + slides in on hover,
+            and is shown inline on touch where there is no hover. */}
+        <div className="pt-6 opacity-100 transition-all duration-500 ease-out lg:translate-y-1.5 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
+          <ul className="flex flex-wrap gap-2">
+            {agent.capabilities.slice(0, featured ? 4 : 3).map((c) => (
+              <li
+                key={c}
+                className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs text-bone/80 backdrop-blur-sm"
+              >
+                {c}
+              </li>
+            ))}
+          </ul>
 
-      <div className="relative mt-6 flex flex-wrap gap-2">
-        {agent.capabilities.slice(0, 4).map((c) => (
-          <span
-            key={c}
-            className="rounded-full border border-line bg-ink/50 px-3 py-1 text-xs text-muted"
-          >
-            {c}
-          </span>
-        ))}
-      </div>
+          <div className="mt-6 flex items-center justify-between gap-4">
+            {agent.metric ? (
+              <span className="text-sm">
+                <span className="font-display font-bold" style={{ color: accent }}>
+                  {agent.metric.value}
+                </span>
+                <span className="ml-2 text-bone/60">{agent.metric.label}</span>
+              </span>
+            ) : (
+              <span />
+            )}
 
-      <div className="relative mt-auto flex items-center justify-between pt-8">
-        {agent.metric ? (
-          <div>
-            <span
-              className="font-display text-xl font-bold"
-              style={{ color: accent }}
-            >
-              {agent.metric.value}
-            </span>
-            <span className="ml-2 text-xs text-faint">
-              {agent.metric.label}
-            </span>
+            {agent.href && (
+              <span className="flex shrink-0 items-center gap-2 text-sm font-medium text-bone">
+                {featured ? "Request a demo" : "Explore"}
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden
+                >
+                  <path
+                    d="M3 7h8M7 3l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            )}
           </div>
-        ) : (
-          <span />
-        )}
-
-        {agent.href ? (
-          <span className="flex items-center gap-2 text-sm font-medium text-bone">
-            Explore
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              className="transition-transform duration-300 group-hover:translate-x-1"
-              aria-hidden
-            >
-              <path
-                d="M3 7h8M7 3l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-        ) : (
-          <span className="text-xs uppercase tracking-widest text-faint">
-            Page soon
-          </span>
-        )}
+        </div>
       </div>
     </Wrapper>
   );

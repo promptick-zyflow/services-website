@@ -21,8 +21,14 @@ export function AgentsRoster() {
 
       <div className="mt-14 grid gap-5 lg:grid-cols-2">
         {agents.map((a, i) => (
-          <Reveal key={a.slug} i={i % 2}>
-            <AgentCard agent={a} />
+          <Reveal
+            key={a.slug}
+            i={i % 2}
+            // Spearhead treatment: the first agent (Sterling, lending) spans
+            // the full row — it's the commercial flagship.
+            className={i === 0 ? "lg:col-span-2" : undefined}
+          >
+            <AgentCard agent={a} featured={i === 0} />
           </Reveal>
         ))}
       </div>
@@ -51,16 +57,16 @@ export function AgentsRoster() {
   );
 }
 
-function AgentCard({ agent }: { agent: Agent }) {
+function AgentCard({ agent, featured }: { agent: Agent; featured?: boolean }) {
   const accent = accentVar(agent.accent);
   const Wrapper = agent.href ? Link : "div";
 
   return (
     <Wrapper
       href={agent.href ?? "#"}
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface p-8 transition-all duration-500 ${
-        agent.href ? "hover:-translate-y-1 hover:border-bone/20" : ""
-      }`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-surface p-8 transition-all duration-500 ${
+        featured ? "border-citron/30" : "border-line"
+      } ${agent.href ? "hover:-translate-y-1 hover:border-bone/20" : ""}`}
     >
       {/* Accent glow */}
       <div
@@ -77,7 +83,20 @@ function AgentCard({ agent }: { agent: Agent }) {
       </span>
 
       <div className="relative flex items-center justify-between">
-        <span className="eyebrow">{agent.domain}</span>
+        <span className="flex items-center gap-3">
+          <span className="eyebrow">For {agent.domain}</span>
+          {featured && (
+            <span
+              className="rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest"
+              style={{
+                color: accent,
+                backgroundColor: `color-mix(in srgb, ${accent} 12%, transparent)`,
+              }}
+            >
+              Flagship
+            </span>
+          )}
+        </span>
         <span className="flex items-center gap-2 text-xs text-faint">
           <span
             className="h-1.5 w-1.5 rounded-full"
@@ -136,7 +155,7 @@ function AgentCard({ agent }: { agent: Agent }) {
 
         {agent.href ? (
           <span className="flex items-center gap-2 text-sm font-medium text-bone">
-            Explore
+            {featured ? "Request a demo" : "Explore"}
             <svg
               width="14"
               height="14"

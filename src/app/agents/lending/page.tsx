@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "AI Loan Broker & Lender Agent",
   description:
     "Sterling turns a 4–6 hour pre-submission workflow into 15–20 minutes: document parsing, Companies House enrichment, product detection, decline screening and a lender-ready case pack. It recommends; you decide.",
-  alternates: { canonical: "/solutions/loan-broker" },
+  alternates: { canonical: "/agents/lending" },
 };
 
 export default function LoanBrokerPage() {

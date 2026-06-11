@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "AI Content Director & Creator Agents",
   description:
     "A two-agent content engine: a Director sets strategy, calendar and brand voice; a Creator produces articles, social, email and video on a single deterministic plan. Every output passes a quality gate before it ships.",
-  alternates: { canonical: "/solutions/content" },
+  alternates: { canonical: "/agents/content" },
 };
 
 const director = [

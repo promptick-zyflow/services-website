@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "AI Project Management Agent",
   description:
     "Steward is an always-on project manager that runs your delivery board: org-wide sync, complete metadata, velocity and burndown, and risk escalated before deadlines slip. Works with GitHub Projects, Linear and Jira.",
-  alternates: { canonical: "/solutions/project-management" },
+  alternates: { canonical: "/agents/delivery" },
 };
 
 export default function ProjectManagementPage() {

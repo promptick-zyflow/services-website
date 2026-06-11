@@ -34,7 +34,7 @@ export const agents: Agent[] = [
     ],
     accent: "citron",
     status: "live",
-    href: "/solutions/loan-broker",
+    href: "/agents/lending",
     metric: { value: "15–20 min", label: "per case, vs. 4–6 hrs manual" },
   },
   {
@@ -55,7 +55,7 @@ export const agents: Agent[] = [
     ],
     accent: "glacier",
     status: "live",
-    href: "/solutions/project-management",
+    href: "/agents/delivery",
     metric: { value: "Hourly", label: "board health sweeps" },
   },
   {
@@ -76,7 +76,7 @@ export const agents: Agent[] = [
     ],
     accent: "citron",
     status: "live",
-    href: "/solutions/product-manager",
+    href: "/agents/product",
     metric: { value: "30–50%", label: "of PM time is spec-writing" },
   },
   {
@@ -97,7 +97,7 @@ export const agents: Agent[] = [
     ],
     accent: "spark",
     status: "live",
-    href: "/solutions/content",
+    href: "/agents/content",
     metric: { value: "QA-gated", label: "nothing ships unreviewed" },
   },
 ];

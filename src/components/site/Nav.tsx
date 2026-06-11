@@ -41,7 +41,7 @@ export function Nav() {
         </div>
 
         <div className="hidden md:block">
-          <Button href="/#contact" variant="primary" className="px-5 py-2.5">
+          <Button href="/contact" variant="primary" className="px-5 py-2.5">
             Book a demo
           </Button>
         </div>
@@ -79,7 +79,7 @@ export function Nav() {
               </Link>
             ))}
             <Button
-              href="/#contact"
+              href="/contact"
               variant="primary"
               className="mt-2 w-full"
             >

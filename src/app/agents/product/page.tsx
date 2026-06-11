@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "AI Product Manager Agent",
   description:
     "Atlas turns vague ideas into production-ready specs in minutes: structured PRDs, user stories, and acceptance criteria with edge cases. It asks the sharp question instead of guessing, and marks proposals PROPOSED until a human confirms.",
-  alternates: { canonical: "/solutions/product-manager" },
+  alternates: { canonical: "/agents/product" },
 };
 
 export default function ProductManagerPage() {

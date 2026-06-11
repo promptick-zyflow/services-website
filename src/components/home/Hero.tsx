@@ -54,10 +54,10 @@ export function Hero() {
             transition={{ duration: 0.8, ease, delay: 0.18 }}
             className="mt-7 max-w-xl text-lg leading-relaxed text-muted"
           >
-            Zyflow builds deep agents that own entire business workflows
-            end-to-end — lending, delivery, product specs and content. They do
-            the operational heavy lifting autonomously, while you stay in
-            command of every decision.
+            Zyflow makes companies AI-enabled — with ready-made deep agents
+            that own entire workflows end-to-end (lending, delivery, product
+            specs, content) and the services to train your team, build custom
+            agents and run the infrastructure underneath.
           </motion.p>
 
           <motion.form
@@ -65,7 +65,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.28 }}
             className="mt-9 flex w-full max-w-md flex-col gap-3 sm:flex-row sm:items-center sm:gap-2 rounded-2xl sm:rounded-full border border-line bg-surface/50 p-2 backdrop-blur-md focus-within:border-[var(--color-primary)] focus-within:ring-1 focus-within:ring-[var(--color-primary)]"
-            onSubmit={(e) => { e.preventDefault(); alert("Thanks for your interest! We'll be in touch."); }}
+            onSubmit={(e) => { e.preventDefault(); window.location.href = "/contact"; }}
           >
             <input
               type="email"
@@ -78,7 +78,7 @@ export function Hero() {
               className="flex w-full sm:w-auto items-center justify-center gap-2 whitespace-nowrap rounded-xl sm:rounded-full px-5 py-2.5 text-sm font-semibold transition-all hover:opacity-90"
               style={{ backgroundColor: "var(--color-primary)", color: "var(--color-ink)" }}
             >
-              Get Early Access
+              Book a scoping call
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
                 <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -93,15 +93,15 @@ export function Hero() {
           >
             <span className="flex items-center gap-1.5">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              No credit card required
+              Free scoping workshop
             </span>
             <span className="flex items-center gap-1.5">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              14-day free trial
+              Pilot measured on your baseline
             </span>
             <span className="flex items-center gap-1.5">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Cancel anytime
+              Human in command, always
             </span>
           </motion.div>
 

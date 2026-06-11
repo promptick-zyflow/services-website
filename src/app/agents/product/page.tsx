@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Contact } from "@/components/home/Contact";
 import { SpecTransform } from "@/components/visuals/SpecTransform";
+import { SpecForge } from "@/components/visuals/SpecForge";
 import {
   LandingHero,
   Banner,
@@ -32,13 +33,13 @@ export default function ProductManagerPage() {
             <span className="flux-text">Production-ready spec out.</span>
           </>
         }
-        subhead="Atlas reads a thin ticket and drafts a well-formed requirement — problem, scope, MVP, acceptance criteria, success metrics — or asks the sharp clarifying questions that close the gap. It never fabricates: proposals are marked PROPOSED until a human confirms."
+        subhead="Atlas turns a thin ticket into a well-formed requirement — problem, scope, MVP, acceptance criteria — or asks the sharp questions that close the gap. It never fabricates: proposals are marked PROPOSED until you confirm."
         stats={[
           { v: "30–50%", l: "of PM time is spec-writing" },
           { v: "Minutes", l: "idea → structured PRD" },
           { v: "PROPOSED", l: "never guesses, marks it" },
         ]}
-        visual={<SpecTransform />}
+        visual={<SpecForge />}
       />
 
       <Banner

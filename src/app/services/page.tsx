@@ -45,11 +45,10 @@ function Hero() {
             <span className="flux-text">AI-enabled.</span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted">
-            Ready-made agents are the fast path — but most companies also need
-            the work around them: teams that know how to use AI, agents built
-            for their own workflows, infrastructure that doesn&rsquo;t blow the
-            budget, and software that ties it together. That&rsquo;s what our
-            services arm delivers.
+            We make companies AI-enabled end to end — enabling your teams,
+            building custom agents, running the infrastructure, and shipping
+            the software around it. Services-led, measured against your
+            baseline.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Button href="#contact" variant="primary">
@@ -94,7 +93,7 @@ const offerings = [
     id: "enablement",
     icon: "users",
     t: "AI-enablement of teams",
-    d: "We train your people on the tools and embed AI into how each team actually works — from prompt-to-production habits to review gates. Adoption that sticks, not a one-off workshop.",
+    d: "We train your people and wire AI into how each team actually works — adoption that sticks, not a one-off workshop.",
     points: [
       "Team training on AI tooling & agents",
       "Workflow-level AI integration",
@@ -105,7 +104,7 @@ const offerings = [
     id: "agent-development",
     icon: "sparkle",
     t: "Agent development & creation",
-    d: "Custom deep agents for your specific workflows, CXO needs and business verticals — built on the same platform as our live roster, grounded in your tools and data, with a human always in command.",
+    d: "Custom deep agents for your workflows, executives and verticals — grounded in your tools and data, human in command.",
     points: [
       "Custom agents per workflow or vertical",
       "Personal agents for executives",
@@ -116,7 +115,7 @@ const offerings = [
     id: "infrastructure",
     icon: "plug",
     t: "Agent & AI infrastructure",
-    d: "The platform under the agents: model and provider selection, flat-rate vs metered cost strategy, deployment, monitoring and spend guardrails. We run our own fleet this way — cost shocks included, lessons learned.",
+    d: "Model strategy, deployment, monitoring and spend guardrails — the platform under it all, built cost-conscious from the start.",
     points: [
       "Multi-provider model strategy",
       "Cost guardrails & budget control",
@@ -127,7 +126,7 @@ const offerings = [
     id: "custom-development",
     icon: "code",
     t: "Custom development",
-    d: "Full-stack product and software development alongside the AI work — the dashboards, integrations and internal tools that agent workflows need to live in your business.",
+    d: "Full-stack software — the dashboards, integrations and internal tools your AI workflows (and the rest of your business) live in.",
     points: [
       "Web apps, dashboards & APIs",
       "Tool & system integrations",
@@ -181,15 +180,15 @@ function Bridge() {
     <Section className="py-16">
       <div className="rounded-3xl border border-line bg-ink/40 p-10 text-center sm:p-14">
         <p className="mx-auto max-w-3xl font-display text-2xl font-medium leading-snug text-bone sm:text-3xl">
-          Ready-made agents get you moving fast. Services make them stick —
-          and build what doesn&rsquo;t exist yet.
+          Services and agents are two halves of one company.
         </p>
         <p className="mx-auto mt-5 max-w-xl text-sm text-muted">
-          Many engagements start with one of our{" "}
+          These services stand on their own — including software with nothing
+          to do with AI. When a workflow is a fit, our ready-made{" "}
           <Link href="/#agents" className="text-bone underline underline-offset-4 hover:text-glacier">
-            live agents
+            agents
           </Link>{" "}
-          and grow into custom work from there.
+          are the fastest way in.
         </p>
       </div>
     </Section>

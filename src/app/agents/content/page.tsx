@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Contact } from "@/components/home/Contact";
-import { ContentLoop } from "@/components/visuals/ContentLoop";
+import { ContentCycle } from "@/components/visuals/ContentCycle";
 import { Section, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 import { Icon } from "@/components/ui/Icon";
@@ -59,7 +59,7 @@ export default function ContentPage() {
           { v: "One voice", l: "brand consistency, enforced" },
           { v: "QA-gated", l: "nothing ships unreviewed" },
         ]}
-        visual={<ContentLoop />}
+        visual={<ContentCycle />}
       />
 
       <Banner

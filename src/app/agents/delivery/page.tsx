@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Contact } from "@/components/home/Contact";
-import { BoardMock } from "@/components/visuals/BoardMock";
+import { BoardPulse } from "@/components/visuals/BoardPulse";
 import {
   LandingHero,
   Banner,
@@ -32,13 +32,13 @@ export default function ProjectManagementPage() {
             <span className="flux-text">that never sleeps.</span>
           </>
         }
-        subhead="Steward owns your delivery board end-to-end. Every hour it syncs your repos, enforces complete metadata, tracks velocity and burndown, and escalates risk before a deadline slips. It doesn't build the work — it makes sure the work ships."
+        subhead="Steward owns your delivery board end-to-end — syncing repos, enforcing metadata, tracking velocity, and escalating risk before a deadline slips. It doesn't build the work; it makes sure it ships."
         stats={[
           { v: "Hourly", l: "board health sweeps" },
           { v: "Org-wide", l: "every repo, one board" },
           { v: "0 chasing", l: "status updates, automated" },
         ]}
-        visual={<BoardMock />}
+        visual={<BoardPulse />}
       />
 
       <Banner

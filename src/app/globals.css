@@ -180,6 +180,48 @@ body {
   animation: card-aurora 26s ease-in-out infinite;
 }
 
+/* Energy flowing along the system-map connectors, toward the core */
+@keyframes sys-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+.sys-flow {
+  stroke-dasharray: 5 13;
+  animation: sys-flow 1.5s linear infinite;
+}
+
+/* A deal travelling down the lending funnel */
+@keyframes funnel-drop {
+  0% { top: 2%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 98%; opacity: 0; }
+}
+.funnel-drop {
+  animation: funnel-drop 3.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Steward's hourly health sweep passing down the board */
+@keyframes board-sweep {
+  0% { top: -8%; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 108%; opacity: 0; }
+}
+.board-sweep {
+  animation: board-sweep 4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* A packet travelling around Nova's production loop */
+@keyframes loop-orbit {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+.loop-orbit {
+  animation: loop-orbit 5s linear infinite;
+}
+
 /* Hero aurora (CSS fallback when 3D is off) */
 .aurora {
   background:

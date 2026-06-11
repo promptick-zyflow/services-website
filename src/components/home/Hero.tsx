@@ -32,7 +32,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-60" style={{ backgroundColor: "var(--color-primary)" }} />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "var(--color-primary)" }} />
               </span>
-              Production deep agents · live today
+              AI services & agents · human in command
             </span>
           </motion.div>
 
@@ -42,20 +42,21 @@ export function Hero() {
             transition={{ duration: 0.8, ease, delay: 0.08 }}
             className="mt-7 font-display text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl"
           >
-            Agents that{" "}
-            <span className="flux-text">run the work</span>,
+            AI that{" "}
+            <span className="flux-text">runs the work</span>,
             <br />
-            not just chat about it.
+            not just chats about it.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.18 }}
-            className="mt-7 max-w-lg text-lg leading-relaxed text-muted"
+            className="mt-7 max-w-xl text-lg leading-relaxed text-muted"
           >
-            Production agents that own entire workflows end-to-end — with a
-            human always in command.
+            Zyflow is an AI services and development partner — we build the
+            agents, software and infrastructure that put AI to work across your
+            business, with a human always in command.
           </motion.p>
 
           <motion.div
@@ -68,7 +69,7 @@ export function Hero() {
               Book a demo
             </Button>
             <Button href="/#agents" variant="line">
-              See the agents
+              What we do
             </Button>
           </motion.div>
         </div>

@@ -1,18 +1,18 @@
 import { Section, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 
-// Four principles, one line each. The fourth folds in the orchestration idea
-// that used to live in its own section.
+// Company-level principles — how we work across both pillars (agents and
+// services), one line each.
 const props = [
   {
     n: "01",
-    title: "They own the workflow, not a chat box",
-    line: "An end-to-end process, run autonomously — finished work, not a faster way to type.",
+    title: "We own the outcome",
+    line: "Finished, working results you can act on — whether that’s an agent, a custom build, or your team enabled. Not a demo.",
   },
   {
     n: "02",
-    title: "Grounded, never fabricated",
-    line: "Agents recommend, mark uncertainty and show their evidence. They don’t invent.",
+    title: "Grounded, never hype",
+    line: "We recommend on evidence, mark uncertainty and show the trail behind every output.",
   },
   {
     n: "03",
@@ -21,8 +21,8 @@ const props = [
   },
   {
     n: "04",
-    title: "One orchestration layer",
-    line: "Specialist agents, coordinated by a chief-of-staff that cross-checks the high-stakes moves.",
+    title: "Start small, scale on proof",
+    line: "One workflow, measured against your baseline. We earn each step before the next — no big-bang transformation.",
   },
 ];
 
@@ -31,15 +31,15 @@ export function ValueProps() {
     <Section id="why" className="py-28">
       <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <Eyebrow>The difference</Eyebrow>
+          <Eyebrow>How we work</Eyebrow>
           <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-            Not a copilot.
+            We hand you the finished work.
             <br />
-            <span className="text-muted">A colleague that delivers.</span>
+            <span className="text-muted">Not a demo.</span>
           </h2>
           <p className="mt-6 max-w-sm text-muted">
-            Most &ldquo;AI&rdquo; tools hand you a faster way to type. Ours hand
-            you the finished work — and the trail to trust it.
+            Agents, custom builds, or your own team enabled to run AI — however
+            we deliver, you get working outcomes measured against your baseline.
           </p>
         </div>
 

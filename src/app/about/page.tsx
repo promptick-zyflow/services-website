@@ -5,7 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Zyflow's mission is to make every company AI-enabled — turning AI from something you chat with into agents that own real work end-to-end, with a human always in command.",
+    "Zyflow is an AI services and development partner — the services arm of the Pragee group — on a mission to make every company AI-enabled, with a human always in command.",
   alternates: { canonical: "/about" },
 };
 
@@ -36,10 +36,10 @@ function Hero() {
             <span className="flux-text">AI-enabled.</span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted">
-            We turn AI from something you chat with into agents that own real
-            work end-to-end — with a human always in command. Founded in 2025,
-            bootstrapped, and built by people who run their own company on the
-            same agents they sell.
+            Zyflow is an AI services and development partner — founded in 2025,
+            bootstrapped, and run on the same AI we deploy for clients.
+            Services-led today, with agents as the flagship, and a human always
+            in command.
           </p>
         </div>
       </Section>
@@ -202,33 +202,59 @@ function Values() {
   );
 }
 
-/* ---------------- Group structure note ---------------- */
+/* ---------------- Group & products ---------------- */
 function Group() {
   return (
     <Section className="py-16 pb-24">
-      <div className="rounded-3xl border border-line bg-surface/50 p-8 text-center sm:p-12">
-        <Eyebrow className="justify-center">The group</Eyebrow>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted">
-          Zyflow is the services arm of the Pragee Technologies group. The
-          group also builds products — including{" "}
-          <a
-            href="https://promptick.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-bone underline underline-offset-4 hover:text-citron"
-          >
-            Promptick
-          </a>
-          , an AI model comparison platform.
+      <div className="max-w-2xl">
+        <Eyebrow>The group</Eyebrow>
+        <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+          A services arm and a products arm.
+        </h2>
+        <p className="mt-6 text-muted">
+          Zyflow is the services arm of Pragee Technologies. The group&rsquo;s
+          products arm ships software of its own — and over time, the agents we
+          build for clients harden into ready-made products anyone can buy.
         </p>
-        <div className="mt-8 flex justify-center gap-3">
-          <Button href="/contact" variant="primary">
-            Work with us
-          </Button>
-          <Button href="/#agents" variant="line">
-            Meet the agents
-          </Button>
-        </div>
+      </div>
+
+      <div className="mt-12 grid gap-5 lg:grid-cols-2">
+        <Reveal>
+          <div className="flex h-full flex-col rounded-2xl border border-line bg-surface p-8">
+            <span className="eyebrow">Services arm</span>
+            <h3 className="mt-4 font-display text-2xl font-bold">Zyflow</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              AI services &amp; development, and the flagship agents (Sterling
+              and the roster). Where the revenue is today.
+            </p>
+            <Button href="/services" variant="line" className="mt-6 self-start">
+              Our services
+            </Button>
+          </div>
+        </Reveal>
+        <Reveal i={1}>
+          <div className="flex h-full flex-col rounded-2xl border border-line bg-surface p-8">
+            <span className="eyebrow text-spark">Products arm</span>
+            <h3 className="mt-4 font-display text-2xl font-bold">Promptick</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              An AI model comparison platform — test and compare models for the
+              same use case before you commit. The first product, with more to
+              come.
+            </p>
+            <Button href="/products/promptick" variant="line" className="mt-6 self-start">
+              Explore Promptick
+            </Button>
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="mt-12 flex flex-wrap justify-center gap-3">
+        <Button href="/contact" variant="primary">
+          Work with us
+        </Button>
+        <Button href="/#agents" variant="line">
+          Meet the agents
+        </Button>
       </div>
     </Section>
   );

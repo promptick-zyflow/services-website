@@ -1,9 +1,9 @@
 export const site = {
   name: "Zyflow",
   domain: "promptick.ai",
-  tagline: "Deep agents that run the work, not just chat about it.",
+  tagline: "AI services and agents that make your company AI-enabled.",
   description:
-    "Zyflow delivers production AI agents and AI services that make companies AI-enabled — agents that own real workflows end-to-end, with a human always in command.",
+    "Zyflow is an AI services and development partner. We build the agents, software and infrastructure that put AI to work end-to-end — with a human always in command.",
   email: "hello@promptick.ai",
   // Header navigation — top-level IA groups. The footer carries the full sitemap.
   nav: [

@@ -6,19 +6,19 @@ const phases = [
     n: "01",
     t: "Scoping workshop",
     tag: "Week 1 · no cost",
-    d: "We map one high-friction workflow with your team and baseline what it costs today in hours and hand-offs. You leave with a clear picture of where an agent pays off — whether or not you proceed.",
+    d: "We map one high-friction workflow and baseline what it costs you today.",
   },
   {
     n: "02",
     t: "Pilot",
     tag: "Weeks 2–5",
-    d: "We deploy one agent against that single workflow, wired into your real tools with review gates in place. Success is measured against the baseline, not a slide.",
+    d: "One agent, wired into your real tools with review gates — measured against that baseline.",
   },
   {
     n: "03",
     t: "Deploy & scale",
     tag: "Ongoing",
-    d: "Once the pilot proves out, we harden it for production, then add agents and orchestrate hand-offs between them. You expand at the pace the results justify.",
+    d: "Productionise what works, then add agents at the pace the results justify.",
   },
 ];
 

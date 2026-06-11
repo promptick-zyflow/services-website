@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Section } from "@/components/ui/Primitives";
+import { Section, Button } from "@/components/ui/Primitives";
 import { AgentCoreCanvas } from "@/components/three/AgentCoreCanvas";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -52,78 +52,25 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.18 }}
-            className="mt-7 max-w-xl text-lg leading-relaxed text-muted"
+            className="mt-7 max-w-lg text-lg leading-relaxed text-muted"
           >
-            Zyflow makes companies AI-enabled — with ready-made deep agents
-            that own entire workflows end-to-end (lending, delivery, product
-            specs, content) and the services to train your team, build custom
-            agents and run the infrastructure underneath.
+            Production agents that own entire workflows end-to-end — with a
+            human always in command.
           </motion.p>
 
-          <motion.form
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease, delay: 0.28 }}
-            className="mt-9 flex w-full max-w-md flex-col gap-3 sm:flex-row sm:items-center sm:gap-2 rounded-2xl sm:rounded-full border border-line bg-surface/50 p-2 backdrop-blur-md focus-within:border-[var(--color-primary)] focus-within:ring-1 focus-within:ring-[var(--color-primary)]"
-            onSubmit={(e) => { e.preventDefault(); window.location.href = "/contact"; }}
-          >
-            <input
-              type="email"
-              placeholder="Enter your work email"
-              className="w-full bg-transparent px-4 py-2 text-sm text-bone placeholder:text-muted focus:outline-none"
-              required
-            />
-            <button
-              type="submit"
-              className="flex w-full sm:w-auto items-center justify-center gap-2 whitespace-nowrap rounded-xl sm:rounded-full px-5 py-2.5 text-sm font-semibold transition-all hover:opacity-90"
-              style={{ backgroundColor: "var(--color-primary)", color: "var(--color-ink)" }}
-            >
-              Book a scoping call
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-                <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </motion.form>
-          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease, delay: 0.35 }}
-            className="mt-5 flex flex-wrap items-center gap-4 text-xs font-medium text-muted"
+            transition={{ duration: 0.8, ease, delay: 0.28 }}
+            className="mt-9 flex flex-wrap items-center gap-3"
           >
-            <span className="flex items-center gap-1.5">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Free scoping workshop
-            </span>
-            <span className="flex items-center gap-1.5">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Pilot measured on your baseline
-            </span>
-            <span className="flex items-center gap-1.5">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Human in command, always
-            </span>
+            <Button href="/contact" variant="primary">
+              Book a demo
+            </Button>
+            <Button href="/#agents" variant="line">
+              See the agents
+            </Button>
           </motion.div>
-
-          <motion.dl
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, ease, delay: 0.5 }}
-            className="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-line pt-7"
-          >
-            {[
-              { v: "15–20 min", l: "lender-ready loan case" },
-              { v: "Hourly", l: "delivery-board sweeps" },
-              { v: "Human", l: "in command, always" },
-            ].map((s) => (
-              <div key={s.l}>
-                <dt className="font-display text-2xl font-bold text-bone">
-                  {s.v}
-                </dt>
-                <dd className="mt-1 text-xs leading-snug text-faint">{s.l}</dd>
-              </div>
-            ))}
-          </motion.dl>
         </div>
       </Section>
     </section>

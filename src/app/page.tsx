@@ -3,7 +3,6 @@ import { Marquee } from "@/components/home/Marquee";
 import { ValueProps } from "@/components/home/ValueProps";
 import { AgentsRoster } from "@/components/home/AgentsRoster";
 import { Services } from "@/components/home/Services";
-import { Orchestration } from "@/components/home/Orchestration";
 import { Outcomes } from "@/components/home/Outcomes";
 import { Process } from "@/components/home/Process";
 import { Company } from "@/components/home/Company";
@@ -19,7 +18,6 @@ export default function Home() {
       <ValueProps />
       <AgentsRoster />
       <Services />
-      <Orchestration />
       <Outcomes />
       <Process />
       <Company />

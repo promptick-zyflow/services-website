@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 import { Icon } from "@/components/ui/Icon";
-import { ModelCompare } from "@/components/visuals/ModelCompare";
 
 export const metadata: Metadata = {
   title: "Promptick — AI Model Comparison",
@@ -26,10 +25,9 @@ function Hero() {
   return (
     <section className="relative overflow-hidden pt-16">
       <div className="pointer-events-none absolute inset-0 grid-lines opacity-40" />
-      <div className="drift-a pointer-events-none absolute -right-40 top-20 h-96 w-96 rounded-full bg-spark/10 blur-3xl" />
-      <div className="drift-b pointer-events-none absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-citron/10 blur-3xl" />
-      <Section className="relative grid gap-14 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
-        <div>
+      <div className="pointer-events-none absolute -right-40 top-20 h-96 w-96 rounded-full bg-spark/10 blur-3xl" />
+      <Section className="relative py-24 lg:py-32">
+        <div className="max-w-3xl">
           <p className="eyebrow">Products · For AI builders & buyers</p>
           <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl">
             Promptick: pick the right model{" "}
@@ -49,9 +47,6 @@ function Hero() {
               Talk to us
             </Button>
           </div>
-        </div>
-        <div className="flex justify-center lg:justify-end">
-          <ModelCompare />
         </div>
       </Section>
     </section>

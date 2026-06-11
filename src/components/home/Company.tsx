@@ -6,21 +6,18 @@ export function Company() {
   return (
     <Section className="py-28">
       {/* Company statement — the one-sentence IA (ai71 pattern) */}
-      <div className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-b from-surface to-ink/60 p-10 text-center sm:p-16">
-        <div className="aurora pointer-events-none absolute inset-0 opacity-50" />
-        <div className="drift-a pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-citron/10 blur-3xl" />
-        <div className="drift-b pointer-events-none absolute -bottom-32 -right-16 h-80 w-80 rounded-full bg-glacier/10 blur-3xl" />
-        <Eyebrow className="relative justify-center">Zyflow</Eyebrow>
-        <h2 className="relative mx-auto mt-6 max-w-3xl font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+      <div className="rounded-3xl border border-line bg-gradient-to-b from-surface to-ink/60 p-10 text-center sm:p-16">
+        <Eyebrow className="justify-center">Zyflow</Eyebrow>
+        <h2 className="mx-auto mt-6 max-w-3xl font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
           We deliver production AI agents and AI services that make companies
           AI-enabled.
         </h2>
-        <p className="relative mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted">
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted">
           Founder-led and bootstrapped, we run our own company on the same
           agent fleet we deploy for clients — and what proves out in the field
           hardens into agents you can simply subscribe to.
         </p>
-        <div className="relative mt-9 flex flex-wrap justify-center gap-3">
+        <div className="mt-9 flex flex-wrap justify-center gap-3">
           <Button href="/about" variant="line">
             About us
           </Button>

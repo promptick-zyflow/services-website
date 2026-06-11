@@ -176,53 +176,6 @@ body {
   filter: blur(20px);
 }
 
-/* Drifting ambient glow blobs — slow organic motion for hero backdrops */
-@keyframes drift-a {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(40px, -30px) scale(1.1); }
-  66% { transform: translate(-25px, 25px) scale(0.95); }
-}
-@keyframes drift-b {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-35px, 20px) scale(1.05); }
-  66% { transform: translate(30px, -25px) scale(0.92); }
-}
-.drift-a {
-  animation: drift-a 18s ease-in-out infinite;
-}
-.drift-b {
-  animation: drift-b 22s ease-in-out infinite;
-}
-
-/* Slow orbital rotation (and counter-rotation to keep children upright) */
-@keyframes orbit {
-  to { transform: rotate(360deg); }
-}
-.orbit {
-  animation: orbit 40s linear infinite;
-}
-.orbit-reverse {
-  animation: orbit 40s linear infinite reverse;
-}
-
-/* Soft pulsing glow for nodes */
-@keyframes node-pulse {
-  0%, 100% { opacity: 0.45; }
-  50% { opacity: 1; }
-}
-.node-pulse {
-  animation: node-pulse 3.2s ease-in-out infinite;
-}
-
-/* Dashed line flow */
-@keyframes dash-flow {
-  to { stroke-dashoffset: -24; }
-}
-.dash-flow {
-  stroke-dasharray: 4 8;
-  animation: dash-flow 1.6s linear infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

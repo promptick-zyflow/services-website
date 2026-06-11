@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 import { Icon } from "@/components/ui/Icon";
-import { ServicesOrbit } from "@/components/visuals/ServicesOrbit";
 
 const offerings = [
   {
@@ -52,12 +51,7 @@ export function Services() {
         </Button>
       </div>
 
-      <div className="mt-12 grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <Reveal className="hidden lg:block">
-          <ServicesOrbit />
-        </Reveal>
-
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
+      <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {offerings.map((o, i) => (
           <Reveal key={o.t} i={i}>
             <Link
@@ -93,7 +87,6 @@ export function Services() {
             </Link>
           </Reveal>
         ))}
-        </div>
       </div>
     </Section>
   );

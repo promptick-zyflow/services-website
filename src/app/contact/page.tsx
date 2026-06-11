@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Primitives";
 import { Contact } from "@/components/home/Contact";
-import { ScopingMock } from "@/components/visuals/ScopingMock";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -16,10 +15,8 @@ export default function ContactPage() {
     <>
       <section className="relative overflow-hidden pt-16">
         <div className="pointer-events-none absolute inset-0 grid-lines opacity-40" />
-        <div className="drift-a pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-citron/10 blur-3xl" />
-        <div className="drift-b pointer-events-none absolute -right-32 top-40 h-80 w-80 rounded-full bg-glacier/10 blur-3xl" />
-        <Section className="relative grid gap-14 pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:pt-32">
-          <div>
+        <Section className="relative pt-24 lg:pt-32">
+          <div className="max-w-3xl">
             <p className="eyebrow">Contact</p>
             <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl">
               Let&rsquo;s put an agent{" "}
@@ -36,9 +33,6 @@ export default function ContactPage() {
                 {site.email}
               </a>
             </p>
-          </div>
-          <div className="hidden justify-center lg:flex lg:justify-end">
-            <ScopingMock />
           </div>
         </Section>
       </section>

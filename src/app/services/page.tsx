@@ -5,7 +5,6 @@ import { Reveal } from "@/components/site/Reveal";
 import { Icon } from "@/components/ui/Icon";
 import { Process } from "@/components/home/Process";
 import { Contact } from "@/components/home/Contact";
-import { ServicesOrbit } from "@/components/visuals/ServicesOrbit";
 
 export const metadata: Metadata = {
   title: "AI Services",
@@ -37,10 +36,9 @@ function Hero() {
   return (
     <section className="relative overflow-hidden pt-16">
       <div className="pointer-events-none absolute inset-0 grid-lines opacity-40" />
-      <div className="drift-a pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-glacier/10 blur-3xl" />
-      <div className="drift-b pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-citron/10 blur-3xl" />
-      <Section className="relative grid gap-14 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
-        <div>
+      <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-glacier/10 blur-3xl" />
+      <Section className="relative py-24 lg:py-32">
+        <div className="max-w-3xl">
           <p className="eyebrow">Services · For every team</p>
           <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl">
             AI services that make your company{" "}
@@ -61,9 +59,6 @@ function Hero() {
               Explore the services
             </Button>
           </div>
-        </div>
-        <div className="hidden justify-center lg:flex lg:justify-end">
-          <ServicesOrbit />
         </div>
       </Section>
     </section>

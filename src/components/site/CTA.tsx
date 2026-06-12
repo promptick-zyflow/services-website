@@ -1,7 +1,28 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Section } from "@/components/ui/Primitives";
 
+// Hide the global CTA banner on pages that already render the inline Contact form at the bottom
+const HIDE_CTA_ROUTES = [
+  "/",
+  "/services",
+  "/contact",
+  "/agents/lending",
+  "/agents/delivery",
+  "/agents/product",
+  "/agents/content",
+];
+
 export function CTA() {
+  const pathname = usePathname();
+
+  // If the route matches any of our contact form pages, hide the redundant CTA box
+  if (pathname && HIDE_CTA_ROUTES.includes(pathname)) {
+    return null;
+  }
+
   return (
     <Section className="pb-16 pt-24 lg:pb-24 lg:pt-32">
       <div className="rounded-3xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-surface/80 to-ink/60 p-10 text-center shadow-[0_0_80px_-20px_var(--color-primary)] backdrop-blur-xl sm:p-16">

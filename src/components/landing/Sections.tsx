@@ -63,7 +63,7 @@ export function LandingHero({
               How it works
             </Button>
           </div>
-          <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-line pt-7">
+          <dl className="mt-12 grid max-w-lg grid-cols-1 gap-4 border-t border-line pt-7 sm:grid-cols-3 sm:gap-6">
             {stats.map((s) => (
               <div key={s.l}>
                 <dt className="font-display text-2xl font-bold">{s.v}</dt>
@@ -116,10 +116,10 @@ export function StepFlow({
 }) {
   const cols =
     steps.length === 3
-      ? "md:grid-cols-3"
+      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
       : steps.length === 5
-        ? "md:grid-cols-5"
-        : "md:grid-cols-4";
+        ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-5"
+        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
   return (
     <Section id={id} className="py-24">
       <div className="max-w-2xl">

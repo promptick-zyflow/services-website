@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 import { Icon } from "@/components/ui/Icon";
-import { Process } from "@/components/home/Process";
+import { ProcessVisual } from "@/components/visuals/ProcessVisual";
 import { Contact } from "@/components/home/Contact";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function ServicesPage() {
       <Problem />
       <Offerings />
       <Bridge />
-      <Process />
+      <ServicesProcess />
       <Pricing />
       <Contact
         defaultInterest="AI services"
@@ -137,14 +137,16 @@ const offerings = [
 
 function Offerings() {
   return (
-    <Section id="offerings" className="py-24">
-      <div className="max-w-2xl">
+    <Section id="offerings" className="relative py-24">
+      <div className="pointer-events-none absolute inset-0 grid-lines opacity-20" />
+      <div className="pointer-events-none absolute -right-40 top-1/3 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+      <div className="relative z-10 max-w-2xl">
         <Eyebrow>What we deliver</Eyebrow>
         <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
           Four services. One goal: AI that owns real work.
         </h2>
       </div>
-      <div className="mt-14 grid gap-5 md:grid-cols-2">
+      <div className="relative z-10 mt-14 grid gap-5 md:grid-cols-2">
         {offerings.map((o, i) => (
           <Reveal key={o.id} i={i % 2}>
             <div
@@ -198,8 +200,9 @@ function Bridge() {
 /* ---------------- Pricing note ---------------- */
 function Pricing() {
   return (
-    <Section className="py-16">
-      <div className="grid gap-8 rounded-3xl border border-line bg-surface/50 p-8 sm:p-12 lg:grid-cols-[1fr_1.4fr] lg:items-center">
+    <Section className="relative py-16">
+      <div className="pointer-events-none absolute -left-40 top-0 h-80 w-80 rounded-full bg-glacier/5 blur-3xl" />
+      <div className="relative z-10 grid gap-8 rounded-3xl border border-line bg-surface/50 p-8 sm:p-12 lg:grid-cols-[1fr_1.4fr] lg:items-center">
         <h2 className="font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
           Priced per engagement, not per seat.
         </h2>
@@ -209,6 +212,73 @@ function Pricing() {
           usage basis. Either way, the scoping workshop that sizes it is
           free.
         </p>
+      </div>
+    </Section>
+  );
+}
+
+/* ---------------- Engagement Process ---------------- */
+const phases = [
+  {
+    n: "01",
+    t: "Scoping workshop",
+    tag: "Week 1 · no cost",
+    d: "We map one high-friction workflow and baseline what it costs you today.",
+  },
+  {
+    n: "02",
+    t: "Pilot",
+    tag: "Weeks 2–5",
+    d: "One agent, wired into your real tools with review gates — measured against that baseline.",
+  },
+  {
+    n: "03",
+    t: "Deploy & scale",
+    tag: "Ongoing",
+    d: "Productionise what works, then add agents at the pace the results justify.",
+  },
+];
+
+function ServicesProcess() {
+  return (
+    <Section id="process" className="py-24">
+      <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div>
+          <Eyebrow>Engagement</Eyebrow>
+          <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+            Start with one workflow.
+            <br />
+            <span className="text-muted">Prove it, then scale.</span>
+          </h2>
+          <p className="mt-6 max-w-md text-muted">
+            No big-bang transformation. We earn each step with measured results
+            against your own baseline.
+          </p>
+          <ol className="relative mt-12 space-y-4">
+            {phases.map((p, i) => (
+              <Reveal as="li" key={p.n} i={i}>
+                <div className="group relative rounded-2xl border border-line bg-surface p-6 transition-colors duration-300 hover:bg-surface-2">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-sm text-primary">{p.n}</span>
+                      <h3 className="font-display text-lg font-semibold">
+                        {p.t}
+                      </h3>
+                    </div>
+                    <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-faint">
+                      {p.tag}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-xs leading-relaxed text-muted">{p.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+
+        <div className="flex justify-center lg:justify-end">
+          <ProcessVisual />
+        </div>
       </div>
     </Section>
   );

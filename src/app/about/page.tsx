@@ -126,8 +126,10 @@ const founders = [
 
 function Founders() {
   return (
-    <Section className="py-24">
-      <div className="max-w-2xl">
+    <Section className="relative py-24">
+      <div className="pointer-events-none absolute inset-0 grid-lines opacity-20" />
+      <div className="pointer-events-none absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-citron/5 blur-3xl" />
+      <div className="relative z-10 max-w-2xl">
         <Eyebrow>The team</Eyebrow>
         <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
           Two founders. One agent fleet.
@@ -138,7 +140,7 @@ function Founders() {
           in command.
         </p>
       </div>
-      <div className="mt-12 grid gap-5 sm:grid-cols-2">
+      <div className="relative z-10 mt-12 grid gap-5 sm:grid-cols-2">
         {founders.map((f, i) => (
           <Reveal key={f.name} i={i}>
             <div className="flex h-full flex-col rounded-2xl border border-line bg-surface p-8">
@@ -167,27 +169,50 @@ function Founders() {
 
 /* ---------------- Values ---------------- */
 const values = [
-  { t: "Ownership", d: "Treat the company as your own. Own outcomes, not just tasks." },
-  { t: "Think holistically", d: "See the whole system, not just the piece in front of you." },
-  { t: "Be honest", d: "Candour over comfort — about progress, mistakes, and life." },
-  { t: "Solve, then decide", d: "Orient on the problem, discuss openly, make the call, move." },
-  { t: "Experiment, fail fast, learn", d: "Try things, fail fast, and learn from what breaks." },
-  { t: "Keep your word", d: "Doing what you said, when you said, is respect." },
-  { t: "Be kind, lift each other", d: "We grow as a team and a community, not alone." },
-  { t: "Take care of yourself", d: "No one grows by running themselves down." },
-  { t: "Always be learning", d: "Keep learning, and raise the people around you." },
+  { t: "Outcome-First", d: "We focus on finished, production-ready systems that integrate with your tools — never just conceptual demos." },
+  { t: "Evidence-Grounded", d: "Our agents make decisions on hard evidence, audit-trail compliance, and marked uncertainty." },
+  { t: "Human-in-Command", d: "Every consequential action passes an explicit review gate. You retain control, review, and veto." },
+  { t: "Measured Scaling", d: "We baseline existing operations, run brief pilots, and only expand at the pace the results justify." },
+  { t: "Radical Transparency", d: "Complete visibility into latency, cost, model performance, and agent prompt logic." },
+  { t: "Platform Agnostic", d: "We select and combine models from multiple providers to optimize for your cost and speed." },
 ];
+
+// [{ 
+//   t: "Outcome-First",
+//   d: "We deliver production-ready systems that integrate with your existing workflows—not experimental demos."
+// },
+// {
+//   t: "Evidence-Grounded",
+//   d: "Our agents operate on verifiable evidence, maintain audit trails, and clearly communicate uncertainty."
+// },
+// {
+//   t: "Human-in-Command",
+//   d: "Critical actions require human review and approval. You retain full authority to approve, modify, or reject decisions."
+// },
+// {
+//   t: "Measured Scaling",
+//   d: "We establish a baseline, validate results through focused pilots, and scale only when outcomes justify expansion."
+// },
+// {
+//   t: "Radical Transparency",
+//   d: "Complete visibility into latency, cost, model performance, and agent decision logic."
+// },
+// {
+//   t: "Platform Agnostic",
+//   d: "We choose the best models and infrastructure for each use case, optimizing for performance, reliability, and cost."
+// }]
 
 function Values() {
   return (
-    <Section className="py-24">
-      <div className="max-w-2xl">
+    <Section className="relative py-24">
+      <div className="pointer-events-none absolute -right-40 top-1/3 h-96 w-96 rounded-full bg-citron/5 blur-3xl" />
+      <div className="relative z-10 max-w-2xl">
         <Eyebrow>Values</Eyebrow>
         <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
           How we work.
         </h2>
       </div>
-      <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      <div className="relative z-10 mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {values.map((v, i) => (
           <Reveal key={v.t} i={i % 3} className="bg-surface p-7">
             <span className="font-mono text-xs text-citron">
@@ -225,7 +250,7 @@ function Group() {
             <h3 className="mt-4 font-display text-2xl font-bold">Zyflow</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted">
               AI services &amp; development, and the flagship agents (Sterling
-              and the roster). Where the revenue is today.
+              and the roster). Delivering verified commercial value.
             </p>
             <Button href="/services" variant="line" className="mt-6 self-start">
               Our services

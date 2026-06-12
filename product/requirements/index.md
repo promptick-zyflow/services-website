@@ -1,38 +1,35 @@
-# Requirements Index — zyflow-landing
+# zyflow-landing — Requirements Index
 
-> Maintained by Atlas. The rolled-up view of every requirement in this repo. Last updated 2026-06-10.
-> Note: this is a newly auto-discovered repo. No `product-context` file yet — see Sajal for direction.
-> Repo has an orphan-duplicate pattern: an older placeholder epic (#1) and 5 older subtask stubs (#2–#6) that predate the canonical epic (#7) and its 5 spec-ready subtasks (#8–#12). Recommended handling: close #1, #2, #3, #4, #5, #6 as duplicates (Steward/Sajal delivery decision — not Atlas's call). Atlas does not act on the duplicates per the "rollup-only" pattern.
+> **Purpose:** one-glance "what exists / what's done" view of all requirements in this repo. Refreshed each sweep by Atlas.
 
-## Canonical structure
+**Last updated:** 2026-06-12 by Atlas.
 
-### Epic (spec-ready)
-| # | Title | Status |
-|---|---|---|
-| [#7](https://github.com/promptick-zyflow/zyflow-landing/issues/7) | Epic: Services Website v1 — AI Solutions & Deep Agent Landing Pages | spec-ready |
+## Epics
 
-### Sub-tasks (spec-ready, in-body `ATLAS:REQUIREMENT`)
-| # | Title | Outcome / one-liner |
-|---|---|---|
-| [#8](https://github.com/promptick-zyflow/zyflow-landing/issues/8) | KT & Handover: Ankit → Sahil | Sahil onboarded, README updated, can deploy independently |
-| [#9](https://github.com/promptick-zyflow/zyflow-landing/issues/9) | Landing Page: Deep Agent for Loan Brokers & Lenders | High-converting page for Sterling-style lending agent |
-| [#10](https://github.com/promptick-zyflow/zyflow-landing/issues/10) | Landing Page: Project Management Deep Agent for Businesses | Dev + ops task board coverage demonstrated on a page |
-| [#11](https://github.com/promptick-zyflow/zyflow-landing/issues/11) | Landing Page: Product Manager Deep Agent (Requirements Documentation) | Turn vague ideas into production-ready specs in minutes |
-| [#12](https://github.com/promptick-zyflow/zyflow-landing/issues/12) | Landing Page: Content Director & Creator Deep Agents | Enterprise-grade content engine pitch page |
+| # | Title | Slug | Status | Doc |
+|---|-------|------|--------|-----|
+| #1 | Services Website Project — AI Solutions & Deep Agents Landing Pages | services-website-epic | spec-ready | [link](https://github.com/promptick-zyflow/zyflow-landing/blob/main/product/requirements/services-website-epic.md) |
 
-## Likely duplicates (do not draft — close-as-dup is a Steward/Sajal decision)
-| # | Title | Likely duplicate of |
-|---|---|---|
-| [#1](https://github.com/promptick-zyflow/zyflow-landing/issues/1) | [Epic] Services Website Project (older) | [#7](https://github.com/promptick-zyflow/zyflow-landing/issues/7) |
-| [#2](https://github.com/promptick-zyflow/zyflow-landing/issues/2) | 1. KT/Handover (older) | [#8](https://github.com/promptick-zyflow/zyflow-landing/issues/8) |
-| [#3](https://github.com/promptick-zyflow/zyflow-landing/issues/3) | 2. Deep Agent Landing Page — Loan Brokers (older) | [#9](https://github.com/promptick-zyflow/zyflow-landing/issues/9) |
-| [#4](https://github.com/promptick-zyflow/zyflow-landing/issues/4) | 3. Project Mgmt Deep Agent Landing Page (older) | [#10](https://github.com/promptick-zyflow/zyflow-landing/issues/10) |
-| [#5](https://github.com/promptick-zyflow/zyflow-landing/issues/5) | 4. Product Manager Agent Landing Page (older) | [#11](https://github.com/promptick-zyflow/zyflow-landing/issues/11) |
-| [#6](https://github.com/promptick-zyflow/zyflow-landing/issues/6) | 5. Content Director/Creator Deep Agent Landing Page (older) | [#12](https://github.com/promptick-zyflow/zyflow-landing/issues/12) |
+## In-ticket specs
 
-## Open question for Sajal
-- **Repo registration.** `zyflow-landing` is currently auto-discovered, not in the explicit `repos` list. Confirm: should it be added to `projects.yaml` (with a `product-context` authored), or treated as the same project as `services-website` (rename/repo-org move)?
+| # | Title | Status | Notes |
+|---|-------|--------|-------|
+| #14 | Enhance website | spec-ready | Whole-site visual refresh + mobile-friendly; a171 inspiration, zyflow's own design. Updated 2026-06-11. |
+
+## Delivery decomposition — Services Website Epic (#1)
+
+| # | Sub-task | Outcome | Status |
+|---|----------|---------|--------|
+| #2 | KT/Handover from Ankit to Sahil | Repo + walkthrough + credentials handover | spec-ready |
+| #3 | Deep Agent Landing Page for Loan Brokers/Lenders | Loan broker/lender deep agent landing page | spec-ready |
+| #4 | PM Deep Agent Landing Page for Businesses | PM agent landing page (sprint, tasks, allocation) | spec-ready |
+| #5 | Product Manager Agent Landing Page | PM-agent-specific landing page (reqs, stories, PRDs) | spec-ready |
+| #6 | Content Director/Creator Deep Agent Landing Page | Content/creator deep agent landing page | spec-ready |
+
+## Reference & testing docs
+
+(none yet)
 
 ---
 
-*Index authored by Atlas. Source: this repo's issues (last full sweep 2026-06-10).*
+*Maintained by Atlas (requirement). Steward reads this for the delivery picture; Atlas writes to the issue bodies + requirement docs, never to the Sprint board.*

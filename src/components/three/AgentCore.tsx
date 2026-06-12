@@ -3,7 +3,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Icosahedron, MeshDistortMaterial, Float } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 
 // Pulled from the site's blue theme tokens (see globals.css):
@@ -151,6 +151,37 @@ function Rig({ children }: { children: React.ReactNode }) {
   return <group ref={group}>{children}</group>;
 }
 
+function AgentScene() {
+  const { viewport } = useThree();
+  const [isLarge, setIsLarge] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+    setIsLarge(media.matches);
+    const listener = (e: MediaQueryListEvent) => setIsLarge(e.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, []);
+
+  // Position the globe on the right for large screens (lg), centered for others
+  const xOffset = isLarge ? viewport.width * 0.18 : 0;
+
+  return (
+    <>
+      <ambientLight intensity={0.4} />
+      <pointLight position={[5, 5, 5]} intensity={40} color={PRIMARY} />
+      <pointLight position={[-6, -3, -4]} intensity={30} color={SECONDARY} />
+      <Rig>
+        <group position={[xOffset, 0, 0]}>
+          <Core />
+          <OrbitNodes />
+        </group>
+        <Dust count={1000} />
+      </Rig>
+    </>
+  );
+}
+
 export default function AgentCore() {
   return (
     <Canvas
@@ -159,14 +190,7 @@ export default function AgentCore() {
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       style={{ background: "transparent" }}
     >
-      <ambientLight intensity={0.4} />
-      <pointLight position={[5, 5, 5]} intensity={40} color={PRIMARY} />
-      <pointLight position={[-6, -3, -4]} intensity={30} color={SECONDARY} />
-      <Rig>
-        <Core />
-        <OrbitNodes />
-        <Dust />
-      </Rig>
+      <AgentScene />
       <EffectComposer>
         <Bloom
           intensity={0.9}

@@ -24,7 +24,7 @@ export function AgentsRoster() {
         {/* The supporting three */}
         <div className="grid gap-5 sm:grid-cols-3">
           {rest.map((a, i) => (
-            <Reveal key={a.slug} i={i}>
+            <Reveal key={a.slug} i={i} className="flex flex-col h-full">
               <AgentCard agent={a} />
             </Reveal>
           ))}
@@ -68,7 +68,7 @@ function AgentCard({ agent, featured }: { agent: Agent; featured?: boolean }) {
     <Wrapper
       href={agent.href ?? "#"}
       className={cx(
-        "group relative flex flex-col overflow-hidden rounded-3xl border border-line bg-surface transition-all duration-500",
+        "group relative flex flex-col h-full overflow-hidden rounded-3xl border border-line bg-surface transition-all duration-500",
         agent.href && "hover:-translate-y-1 hover:border-bone/25",
         featured ? "min-h-[22rem] p-9 sm:p-12" : "min-h-[20rem] p-8"
       )}

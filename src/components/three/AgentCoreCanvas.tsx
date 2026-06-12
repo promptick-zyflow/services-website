@@ -9,7 +9,7 @@ const AgentCore = dynamic(() => import("./AgentCore"), { ssr: false });
 /* CSS aurora fallback — shown on mobile, reduced-motion, or before the 3D mounts. */
 function AuroraFallback() {
   return (
-    <div className="absolute inset-0 grid place-items-center">
+    <div className="absolute inset-0 grid place-items-center lg:left-[42%]">
       <div className="relative h-[min(70vw,30rem)] w-[min(70vw,30rem)]">
         <div className="aurora absolute inset-0 rounded-full" />
         <div className="absolute inset-[18%] rounded-full border border-citron/20" />

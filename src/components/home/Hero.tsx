@@ -12,8 +12,8 @@ export function Hero() {
       {/* Background grid */}
       <div className="pointer-events-none absolute inset-0 grid-lines opacity-60" />
 
-      {/* Animated 3D agent core — full-bleed background, offset to the right */}
-      <div className="absolute inset-0 lg:left-[42%]">
+      {/* Animated 3D agent core — full-bleed background */}
+      <div className="absolute inset-0">
         <AgentCoreCanvas />
       </div>
 

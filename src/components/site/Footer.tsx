@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="relative mt-32 border-t border-line">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12">
-        
+
 
 
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_0.8fr_0.8fr]">
@@ -96,8 +96,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-line pt-8 text-xs text-faint sm:flex-row sm:items-center">
           <p>
-            © {new Date().getFullYear()} {site.name}. Built on the Hermes
-            multi-agent framework.
+            © {new Date().getFullYear()} {site.name}
           </p>
           <p className="font-mono uppercase tracking-widest">
             Deep agents · human in command

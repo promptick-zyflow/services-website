@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Section } from "@/components/ui/Primitives";
+import { TrackedLink } from "@/components/site/TrackedLink";
 
 export function CTA() {
   return (
@@ -50,12 +50,14 @@ export function CTA() {
           Stop chatting about AI and start deploying agents that actually run the work.
         </p>
         <div className="mt-10 flex justify-center">
-          <Link
+          <TrackedLink
             href="/#contact"
+            event="clicked-cta"
+            eventProps={{ label: "Book your demo", destination: "/#contact", location: "global-cta" }}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-primary)] px-8 py-4 text-base font-bold text-ink transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_-8px_var(--color-primary)]"
           >
             Book your demo
-          </Link>
+          </TrackedLink>
         </div>
       </div>
     </Section>

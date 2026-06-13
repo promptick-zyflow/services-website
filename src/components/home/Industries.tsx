@@ -4,6 +4,7 @@ import { useEffect, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { Section, Eyebrow, accentVar, cx } from "@/components/ui/Primitives";
 import { industries, type Industry, type Persona } from "@/lib/agents";
+import { track, EVENTS } from "@/lib/mixpanel";
 
 /* ------------------------------------------------------------------
    Industry split, ai71-style: three tall cards side by side in the
@@ -41,6 +42,13 @@ export function Industries() {
       <div className="mt-6 flex justify-end">
         <Link
           href="/agents"
+          onClick={() =>
+            track(EVENTS.clickedButton, {
+              label: "Meet all the agents",
+              destination: "/agents",
+              location: "industries",
+            })
+          }
           className="inline-flex items-center gap-2 text-sm font-medium text-muted underline-offset-4 transition-colors hover:text-bone hover:underline"
         >
           Meet all the agents
@@ -305,7 +313,15 @@ function IndustryCard({
           <div className="relative z-10 mt-7 flex flex-col items-center gap-4">
             <Link
               href={active.href}
-              onClick={stop}
+              onClick={(e) => {
+                stop(e);
+                track(EVENTS.clickedCta, {
+                  label: "Learn more",
+                  destination: active.href,
+                  industry: industry.id,
+                  location: "industries",
+                });
+              }}
               className="inline-flex items-center gap-2.5 rounded-full px-6 py-3 text-sm font-medium text-[#0a0a0a] transition-transform duration-300 hover:-translate-y-0.5"
               style={{ background: accent }}
             >
@@ -317,7 +333,15 @@ function IndustryCard({
             </Link>
             <Link
               href={industry.actHref}
-              onClick={stop}
+              onClick={(e) => {
+                stop(e);
+                track(EVENTS.clickedCta, {
+                  label: industry.actLabel,
+                  destination: industry.actHref,
+                  industry: industry.id,
+                  location: "industries",
+                });
+              }}
               className="text-sm font-medium text-bone underline-offset-4 hover:underline"
             >
               {industry.actLabel}

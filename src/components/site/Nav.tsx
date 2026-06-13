@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui/Primitives";
+import { track, EVENTS } from "@/lib/mixpanel";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,7 +25,11 @@ export function Nav() {
         }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link href="/" className="group flex items-center gap-2.5">
+        <Link
+          href="/"
+          className="group flex items-center gap-2.5"
+          onClick={() => track(EVENTS.clickedLogo, { destination: "/" })}
+        >
           <Logo />
         </Link>
 
@@ -33,6 +38,13 @@ export function Nav() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() =>
+                track(EVENTS.clickedNavLink, {
+                  label: item.label,
+                  destination: item.href,
+                  location: "header",
+                })
+              }
               className="text-sm text-muted transition-colors hover:text-bone"
             >
               {item.label}
@@ -41,14 +53,31 @@ export function Nav() {
         </div>
 
         <div className="hidden md:block">
-          <Button href="/contact" variant="primary" className="px-5 py-2.5">
+          <Button
+            href="/contact"
+            variant="primary"
+            className="px-5 py-2.5"
+            onClick={() =>
+              track(EVENTS.clickedButton, {
+                label: "Book a demo",
+                destination: "/contact",
+                location: "header",
+              })
+            }
+          >
             Book a demo
           </Button>
         </div>
 
         <button
           className="flex h-10 w-10 items-center justify-center rounded-full border border-line md:hidden"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => {
+            const next = !open;
+            track(next ? EVENTS.openedMenu : EVENTS.closedMenu, {
+              location: "mobile-nav",
+            });
+            setOpen(next);
+          }}
           aria-label="Toggle menu"
           aria-expanded={open}
         >
@@ -72,7 +101,14 @@ export function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  track(EVENTS.clickedNavLink, {
+                    label: item.label,
+                    destination: item.href,
+                    location: "mobile-nav",
+                  });
+                  setOpen(false);
+                }}
                 className="text-base text-muted hover:text-bone"
               >
                 {item.label}
@@ -82,6 +118,13 @@ export function Nav() {
               href="/contact"
               variant="primary"
               className="mt-2 w-full"
+              onClick={() =>
+                track(EVENTS.clickedButton, {
+                  label: "Book a demo",
+                  destination: "/contact",
+                  location: "mobile-nav",
+                })
+              }
             >
               Book a demo
             </Button>

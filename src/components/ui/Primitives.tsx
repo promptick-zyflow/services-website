@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ComponentProps, ReactNode } from "react";
+import type { ComponentProps, MouseEventHandler, ReactNode } from "react";
 
 function cx(...parts: (string | false | undefined)[]) {
   return parts.filter(Boolean).join(" ");
@@ -32,6 +32,7 @@ export function Button({
   }[variant];
 
   const cls = cx(base, styles, className);
+  const { onClick, ...buttonRest } = rest;
 
   if (href) {
     const external = href.startsWith("http");
@@ -39,6 +40,7 @@ export function Button({
       <Link
         href={href}
         className={cls}
+        onClick={onClick as MouseEventHandler<HTMLAnchorElement> | undefined}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       >
         {children}
@@ -46,7 +48,7 @@ export function Button({
     );
   }
   return (
-    <button className={cls} {...rest}>
+    <button className={cls} onClick={onClick} {...buttonRest}>
       {children}
     </button>
   );

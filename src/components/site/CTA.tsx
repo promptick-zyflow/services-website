@@ -4,8 +4,46 @@ import { Section } from "@/components/ui/Primitives";
 export function CTA() {
   return (
     <Section className="pb-16 pt-24 lg:pb-24 lg:pt-32">
-      <div className="rounded-3xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-surface/80 to-ink/60 p-10 text-center shadow-[0_0_80px_-20px_var(--color-primary)] backdrop-blur-xl sm:p-16">
-        <h2 className="font-display text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+      <div className="relative overflow-hidden rounded-3xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-surface/80 to-ink/60 p-10 text-center shadow-[0_0_80px_-20px_var(--color-primary)] backdrop-blur-xl sm:p-16">
+        {/* Workshop watermarks: the tool and the AI star, floating greyscale
+            on either side of the card */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/agent-hero/tool-hammer.svg"
+          alt=""
+          draggable={false}
+          aria-hidden
+          className="persona-float pointer-events-none absolute select-none"
+          style={{
+            left: "3rem",
+            bottom: "3rem",
+            height: "8rem",
+            width: "auto",
+            opacity: 0.14,
+            filter: "grayscale(1) brightness(1.6)",
+            imageRendering: "pixelated",
+            transform: "rotate(-8deg)",
+          }}
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/agent-hero/tool-star.svg"
+          alt=""
+          draggable={false}
+          aria-hidden
+          className="persona-float pointer-events-none absolute select-none"
+          style={{
+            right: "3.5rem",
+            top: "3rem",
+            height: "7rem",
+            width: "auto",
+            opacity: 0.14,
+            filter: "grayscale(1) brightness(1.7)",
+            imageRendering: "pixelated",
+            animationDelay: "-2.1s",
+          }}
+        />
+        <h2 className="relative font-display text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
           <span className="flux-text">Ready to Ship?</span>
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-muted">

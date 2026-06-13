@@ -4,7 +4,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { Icon } from "@/components/ui/Icon";
 
 export const metadata: Metadata = {
-  title: "Promptick — AI Model Comparison",
+  title: "Promptick, AI Model Comparison",
   description:
     "Promptick is the Zyflow group's product: test and compare AI models against the same use case, side by side, before you commit.",
   alternates: { canonical: "/products/promptick" },
@@ -34,7 +34,7 @@ function Hero() {
             <span className="flux-text">before you commit.</span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted">
-            Promptick is an AI model comparison platform — run the same use
+            Promptick is an AI model comparison platform, run the same use
             case across different models and see, side by side, which one
             actually performs. Evaluation and comparison, not inference
             hosting.
@@ -63,7 +63,7 @@ const features = [
   {
     icon: "chart",
     t: "Side-by-side comparison",
-    d: "See quality, behaviour and fit next to each other — decide on evidence, not vendor claims.",
+    d: "See quality, behaviour and fit next to each other, decide on evidence, not vendor claims.",
   },
   {
     icon: "target",
@@ -104,7 +104,7 @@ function FromTheGroup() {
         <Eyebrow className="justify-center">From the same team</Eyebrow>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted">
           Promptick is built by the same group that delivers Zyflow&rsquo;s
-          agents and AI services — proof that we don&rsquo;t just advise on
+          agents and AI services, proof that we don&rsquo;t just advise on
           AI products, we ship them.
         </p>
         <div className="mt-8 flex justify-center">

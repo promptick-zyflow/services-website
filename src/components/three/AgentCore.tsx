@@ -29,7 +29,7 @@ function Core() {
   return (
     <group>
       <Float speed={1.4} rotationIntensity={0.4} floatIntensity={0.6}>
-        <Icosahedron ref={inner} args={[1, 6]}>
+        <Icosahedron ref={inner} args={[1, 4]}>
           <MeshDistortMaterial
             color={PRIMARY}
             emissive={PRIMARY}
@@ -90,7 +90,7 @@ function OrbitNodes() {
   );
 }
 
-/* Deterministic pseudo-random in [0,1) — keeps the dust stable across
+/* Deterministic pseudo-random in [0,1), keeps the dust stable across
    renders and satisfies the react-hooks/purity rule (no Math.random()). */
 function hashRand(n: number) {
   const x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
@@ -176,18 +176,23 @@ function AgentScene() {
           <Core />
           <OrbitNodes />
         </group>
-        <Dust count={1000} />
+        <Dust count={500} />
       </Rig>
     </>
   );
 }
 
-export default function AgentCore() {
+export default function AgentCore({ active = true }: { active?: boolean }) {
   return (
     <Canvas
+      // Pause the render loop entirely when the orb is off-screen or the tab
+      // is hidden, no GPU work when nobody's looking at it.
+      frameloop={active ? "always" : "never"}
       camera={{ position: [0, 0, 7], fov: 42 }}
-      dpr={[1, 1.6]}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      dpr={[1, 1.5]}
+      // antialias off on the canvas: the EffectComposer renders to its own
+      // buffer, so canvas-level MSAA is wasted work here.
+      gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
       style={{ background: "transparent" }}
     >
       <AgentScene />

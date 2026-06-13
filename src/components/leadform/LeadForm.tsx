@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Primitives";
+import { Select } from "@/components/ui/Select";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -90,18 +91,12 @@ export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
           <label htmlFor="interest" className="text-sm text-muted">
             Interested in
           </label>
-          <select
+          <Select
             id="interest"
             name="interest"
+            options={interests}
             defaultValue={defaultInterest ?? interests[interests.length - 1]}
-            className="h-11 rounded-lg border border-line bg-ink/60 px-3 text-sm text-bone outline-none transition-colors focus:border-citron/50"
-          >
-            {interests.map((o) => (
-              <option key={o} value={o} className="bg-ink">
-                {o}
-              </option>
-            ))}
-          </select>
+          />
         </div>
       </div>
 
@@ -119,7 +114,7 @@ export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
         />
       </div>
 
-      {/* Honeypot — hidden from humans */}
+      {/* Honeypot, hidden from humans */}
       <input
         type="text"
         name="company_website"

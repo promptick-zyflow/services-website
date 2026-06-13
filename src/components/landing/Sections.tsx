@@ -72,7 +72,29 @@ export function LandingHero({
             ))}
           </dl>
         </div>
-        <div className="flex justify-center lg:justify-end">{visual}</div>
+        <div className="flex flex-col items-center gap-10 lg:items-end">
+          {/* The agent's brand persona, idling above the product visual */}
+          <div className="persona-float relative">
+            <div
+              className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+              style={{ background: accentHex(accent), opacity: 0.3 }}
+              aria-hidden
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/agents/${codename.toLowerCase()}.svg`}
+              alt={`${codename} pixel-art persona`}
+              draggable={false}
+              className="pixelated relative select-none"
+              style={{
+                height: "9rem",
+                width: "auto",
+                filter: `drop-shadow(0 6px 14px color-mix(in srgb, ${accentHex(accent)} 35%, transparent))`,
+              }}
+            />
+          </div>
+          {visual}
+        </div>
       </Section>
     </section>
   );
@@ -295,7 +317,7 @@ export function Quote({
           {quote}
         </blockquote>
         <figcaption className="mt-6 text-sm text-faint">
-          — {attribution}
+         , {attribution}
         </figcaption>
       </figure>
     </Section>

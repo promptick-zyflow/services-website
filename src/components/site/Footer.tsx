@@ -11,7 +11,17 @@ export function Footer() {
 
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_0.8fr_0.8fr]">
           <div>
-            <img src="/logo.png" alt="Zyflow Logo" className="h-8 w-auto object-contain" />
+            <div className="flex items-center gap-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/zyflow-short.png"
+                alt="Zyflow mark"
+                className="h-9 w-9 object-contain"
+              />
+              <span className="font-display text-lg font-bold tracking-tight">
+                Zyflow
+              </span>
+            </div>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
               {site.tagline}
             </p>

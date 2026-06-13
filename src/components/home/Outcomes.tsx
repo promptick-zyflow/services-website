@@ -32,7 +32,7 @@ export function Outcomes() {
 
       <p className="mt-8 text-center text-xs text-faint">
         Figures reflect Zyflow agents in real deployments. Your numbers depend on
-        volume and complexity — we&rsquo;ll baseline them in the pilot.
+        volume and complexity, we&rsquo;ll baseline them in the pilot.
       </p>
     </Section>
   );

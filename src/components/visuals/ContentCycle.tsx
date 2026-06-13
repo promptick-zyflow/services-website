@@ -5,7 +5,7 @@ import { Icon } from "@/components/ui/Icon";
 
 /**
  * Nova as a two-agent production loop: a Director sets strategy, a Creator
- * produces, everything passes a quality gate before it ships — then the cycle
+ * produces, everything passes a quality gate before it ships, then the cycle
  * repeats. Bespoke to content-at-scale.
  */
 

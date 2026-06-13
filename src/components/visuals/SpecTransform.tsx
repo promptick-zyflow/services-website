@@ -55,7 +55,7 @@ export function SpecTransform() {
             ["Scope", "CSV export of account data, async for large sets."],
             ["User story", "As an admin, I export my org's records to CSV…"],
             ["Acceptance", "≤10s for 100k rows · email link when ready · audit-logged"],
-            ["Out of scope", "Scheduled exports, XLSX — flagged PROPOSED"],
+            ["Out of scope", "Scheduled exports, XLSX, flagged PROPOSED"],
           ].map(([k, v]) => (
             <div key={k} className="flex gap-3">
               <dt className="w-20 shrink-0 font-mono text-[10px] uppercase tracking-wide text-faint">

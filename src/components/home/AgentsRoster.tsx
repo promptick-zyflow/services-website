@@ -16,7 +16,7 @@ export function AgentsRoster() {
       </div>
 
       <div className="mt-14 space-y-5">
-        {/* Sterling — the wide commercial flagship */}
+        {/* Sterling, the wide commercial flagship */}
         <Reveal>
           <AgentCard agent={flagship} featured />
         </Reveal>
@@ -31,7 +31,7 @@ export function AgentsRoster() {
         </div>
       </div>
 
-      {/* More agents — quiet teaser */}
+      {/* More agents, quiet teaser */}
       <Reveal>
         <div className="mt-5 grid gap-5 sm:grid-cols-2">
           {moreAgents.map((m) => (
@@ -60,7 +60,7 @@ export function AgentsRoster() {
    capabilities + CTA reveal on hover (desktop) / shown inline (mobile).
    Each card carries a soft, slowly-breathing gradient in its accent.
 ------------------------------------------------------------------ */
-function AgentCard({ agent, featured }: { agent: Agent; featured?: boolean }) {
+export function AgentCard({ agent, featured }: { agent: Agent; featured?: boolean }) {
   const accent = accentVar(agent.accent);
   const Wrapper = agent.href ? Link : "div";
 
@@ -73,7 +73,7 @@ function AgentCard({ agent, featured }: { agent: Agent; featured?: boolean }) {
         featured ? "min-h-[22rem] p-9 sm:p-12" : "min-h-[20rem] p-8"
       )}
     >
-      {/* Accent gradient wash — intensifies on hover */}
+      {/* Accent gradient wash, intensifies on hover */}
       <div
         className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-700 group-hover:opacity-100"
         style={{
@@ -93,7 +93,7 @@ function AgentCard({ agent, featured }: { agent: Agent; featured?: boolean }) {
         aria-hidden
       />
 
-      {/* Top row — audience chip + status */}
+      {/* Top row, audience chip + status */}
       <div className="relative z-10 flex items-center justify-between gap-3">
         <span className="flex flex-wrap items-center gap-2.5">
           <span className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-xs text-bone/90 backdrop-blur-sm">
@@ -139,7 +139,7 @@ function AgentCard({ agent, featured }: { agent: Agent; featured?: boolean }) {
           {agent.tagline}
         </p>
 
-        {/* Progressive reveal — space is always reserved so the card never
+        {/* Progressive reveal, space is always reserved so the card never
             changes size (no layout shift); detail fades + slides in on hover,
             and is shown inline on touch where there is no hover. */}
         <div className="pt-6 opacity-100 transition-all duration-500 ease-out lg:translate-y-1.5 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">

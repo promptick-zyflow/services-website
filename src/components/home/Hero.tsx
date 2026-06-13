@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { Section, Button } from "@/components/ui/Primitives";
-import { AgentCoreCanvas } from "@/components/three/AgentCoreCanvas";
+import { AgentHome } from "@/components/hero/AgentHome";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -12,16 +12,8 @@ export function Hero() {
       {/* Background grid */}
       <div className="pointer-events-none absolute inset-0 grid-lines opacity-60" />
 
-      {/* Animated 3D agent core — full-bleed background */}
-      <div className="absolute inset-0">
-        <AgentCoreCanvas />
-      </div>
-
-      {/* Fade the canvas into the page bottom */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-obsidian to-transparent" />
-
-      <Section className="relative flex min-h-[calc(100vh-4rem)] items-center">
-        <div className="max-w-2xl py-20 lg:py-32">
+      <Section className="relative grid min-h-[calc(100vh-4rem)] items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+        <div className="max-w-2xl py-12 lg:py-32">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -54,7 +46,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease, delay: 0.18 }}
             className="mt-7 max-w-xl text-lg leading-relaxed text-muted"
           >
-            Zyflow is an AI services and development partner — we build the
+            Zyflow is an AI services and development partner, we build the
             agents, software and infrastructure that put AI to work across your
             business, with a human always in command.
           </motion.p>
@@ -73,6 +65,16 @@ export function Hero() {
             </Button>
           </motion.div>
         </div>
+
+        {/* Home of the AI workforce, interactive pixel scene */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease, delay: 0.2 }}
+          className="pb-12 lg:pb-0"
+        >
+          <AgentHome />
+        </motion.div>
       </Section>
     </section>
   );

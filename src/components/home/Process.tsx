@@ -12,7 +12,7 @@ const phases = [
     n: "02",
     t: "Pilot",
     tag: "Weeks 2–5",
-    d: "One agent, wired into your real tools with review gates — measured against that baseline.",
+    d: "One agent, wired into your real tools with review gates, measured against that baseline.",
   },
   {
     n: "03",

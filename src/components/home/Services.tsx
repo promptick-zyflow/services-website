@@ -4,9 +4,9 @@ import { ServicesSystem } from "@/components/visuals/ServicesSystem";
 export function Services() {
   return (
     <Section id="services" className="py-28">
-      {/* Pillar bridge — agents are one half, services the other */}
+      {/* Pillar bridge, agents are one half, services the other */}
       <p className="mx-auto max-w-3xl text-center font-display text-2xl font-medium leading-snug text-bone sm:text-3xl">
-        Two halves of one company — autonomous agents that own the work, and
+        Two halves of one company, autonomous agents that own the work, and
         the AI services &amp; development to put it all to work.
       </p>
 

@@ -32,7 +32,7 @@ export default function ProjectManagementPage() {
             <span className="flux-text">that never sleeps.</span>
           </>
         }
-        subhead="Steward owns your delivery board end-to-end — syncing repos, enforcing metadata, tracking velocity, and escalating risk before a deadline slips. It doesn't build the work; it makes sure it ships."
+        subhead="Steward owns your delivery board end-to-end, syncing repos, enforcing metadata, tracking velocity, and escalating risk before a deadline slips. It doesn't build the work; it makes sure it ships."
         stats={[
           { v: "Hourly", l: "board health sweeps" },
           { v: "Org-wide", l: "every repo, one board" },
@@ -43,7 +43,7 @@ export default function ProjectManagementPage() {
 
       <Banner
         heading="Delivery doesn't fail loudly. It drifts."
-        body="An estimate never gets filled in. An owner quietly changes. A blocker sits for a week. By the time it surfaces in a status meeting, the sprint is already off. The overhead of keeping a board honest — and reading the early-warning signs — is a full-time job nobody actually has time for."
+        body="An estimate never gets filled in. An owner quietly changes. A blocker sits for a week. By the time it surfaces in a status meeting, the sprint is already off. The overhead of keeping a board honest, and reading the early-warning signs, is a full-time job nobody actually has time for."
       />
 
       <StepFlow
@@ -52,23 +52,23 @@ export default function ProjectManagementPage() {
         accent="glacier"
         heading="A board that keeps itself honest."
         steps={[
-          { k: "Sync", d: "Every repo and issue is pulled onto one board — nothing lives in a silo." },
+          { k: "Sync", d: "Every repo and issue is pulled onto one board, nothing lives in a silo." },
           { k: "Enforce", d: "Each item gets a complete set of fields: owner, estimate, priority, iteration, status." },
           { k: "Track", d: "Velocity, burndown and capacity are computed continuously, not at sprint's end." },
           { k: "Flag", d: "Missing data, overdue and stalled items are detected and surfaced automatically." },
-          { k: "Escalate", d: "Real risk is routed to the owner with context — before it becomes a slip." },
+          { k: "Escalate", d: "Real risk is routed to the owner with context, before it becomes a slip." },
         ]}
       />
 
       <CapabilityGrid
         eyebrow="Capabilities"
         accent="glacier"
-        heading="Everything a good PM does — every hour."
+        heading="Everything a good PM does, every hour."
         items={[
           { icon: "board", t: "Org-wide board sync", d: "Every repo and issue ingested into a single source of truth, kept current automatically." },
-          { icon: "list", t: "Metadata enforcement", d: "Owner, estimate, priority, iteration and status filled in — or flagged when they're not." },
+          { icon: "list", t: "Metadata enforcement", d: "Owner, estimate, priority, iteration and status filled in, or flagged when they're not." },
           { icon: "link", t: "Dependencies & critical path", d: "Cross-item dependencies tracked so the path to done stays visible." },
-          { icon: "gauge", t: "Velocity & burndown", d: "Capacity, throughput and burndown computed live — no manual reporting." },
+          { icon: "gauge", t: "Velocity & burndown", d: "Capacity, throughput and burndown computed live, no manual reporting." },
           { icon: "bell", t: "Risk & overdue alerts", d: "Stalled, overdue and at-risk work detected early and escalated with context." },
           { icon: "chart", t: "Automated summaries", d: "A standing read of board health, delivered where your team already works." },
         ]}
@@ -93,7 +93,7 @@ export default function ProjectManagementPage() {
       <Contact
         defaultInterest="Project management agent"
         heading="Let Steward run your delivery board."
-        blurb="Book a demo and we'll wire Steward into a sample of your repos — so you can see the sync, the risk flags and the velocity tracking on your own work."
+        blurb="Book a demo and we'll wire Steward into a sample of your repos, so you can see the sync, the risk flags and the velocity tracking on your own work."
       />
     </>
   );

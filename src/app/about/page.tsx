@@ -5,7 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Zyflow is an AI services and development partner — the services arm of the Pragee group — on a mission to make every company AI-enabled, with a human always in command.",
+    "Zyflow is an AI services and development partner, the services arm of the Pragee group, on a mission to make every company AI-enabled, with a human always in command.",
   alternates: { canonical: "/about" },
 };
 
@@ -36,7 +36,7 @@ function Hero() {
             <span className="flux-text">AI-enabled.</span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted">
-            Zyflow is an AI services and development partner — founded in 2025,
+            Zyflow is an AI services and development partner, founded in 2025,
             bootstrapped, and run on the same AI we deploy for clients.
             Services-led today, with agents as the flagship, and a human always
             in command.
@@ -56,7 +56,7 @@ function MissionVision() {
           <div className="h-full rounded-3xl border border-line bg-surface p-10">
             <Eyebrow>Mission</Eyebrow>
             <p className="mt-6 font-display text-2xl font-medium leading-snug text-bone sm:text-3xl">
-              Make every company AI-enabled — agents that own real work
+              Make every company AI-enabled, agents that own real work
               end-to-end, with a human always in command.
             </p>
           </div>
@@ -66,7 +66,7 @@ function MissionVision() {
             <Eyebrow>Vision</Eyebrow>
             <p className="mt-6 font-display text-2xl font-medium leading-snug text-bone sm:text-3xl">
               A world where any company, in any industry, can get an agent for
-              any workflow — as easily as hiring for the role.
+              any workflow, as easily as hiring for the role.
             </p>
           </div>
         </Reveal>
@@ -88,7 +88,7 @@ function TwoFronts() {
             </h3>
             <p className="mt-3 text-base leading-relaxed text-muted">
               Custom development, agent creation, AI infrastructure and team
-              enablement — delivered against your hardest workflows, measured
+              enablement, delivered against your hardest workflows, measured
               against your own baseline.
             </p>
           </div>
@@ -97,8 +97,8 @@ function TwoFronts() {
               What recurs becomes an agent you can buy
             </h3>
             <p className="mt-3 text-base leading-relaxed text-muted">
-              The workflows that repeat across engagements — lending, delivery,
-              specs, content — harden into ready-made agents companies can
+              The workflows that repeat across engagements, lending, delivery,
+              specs, content, harden into ready-made agents companies can
               subscribe to on demand.
             </p>
           </div>
@@ -109,18 +109,20 @@ function TwoFronts() {
 }
 
 /* ---------------- Founders ---------------- */
-const founders = [
+const founders: {
+  name: string;
+  role: string;
+  img?: string; // pixel-art portrait, sticker-outlined, stands on the card edge
+}[] = [
   {
     name: "Sajal Garg",
     role: "Co-founder & Director",
-    blurb:
-      "Drives the company's strategy, go-to-market and the services business — and runs the agent roster that runs the company.",
+    img: "/founders/sajal.png",
   },
   {
     name: "Ankit Bhardwaj",
     role: "Co-founder & Director",
-    blurb:
-      "Leads engineering and the agent platform — the architecture, infrastructure and delivery behind every agent we ship.",
+    img: "/founders/ankit.png",
   },
 ];
 
@@ -133,7 +135,7 @@ function Founders() {
           Two founders. One agent fleet.
         </h2>
         <p className="mt-6 text-muted">
-          Zyflow is founder-led and deliberately small — the day-to-day work is
+          Zyflow is founder-led and deliberately small, the day-to-day work is
           run by the same deep agents we deploy for clients, with the founders
           in command.
         </p>
@@ -141,22 +143,38 @@ function Founders() {
       <div className="mt-12 grid gap-5 sm:grid-cols-2">
         {founders.map((f, i) => (
           <Reveal key={f.name} i={i}>
-            <div className="flex h-full flex-col rounded-2xl border border-line bg-surface p-8">
-              <span className="grid h-14 w-14 place-items-center rounded-full border border-line bg-ink font-display text-lg font-bold text-citron">
-                {f.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-              </span>
-              <h3 className="mt-5 font-display text-xl font-semibold">
-                {f.name}
-              </h3>
-              <p className="mt-1 font-mono text-xs uppercase tracking-widest text-faint">
-                {f.role}
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted">
-                {f.blurb}
-              </p>
+            <div className="relative flex h-full min-h-[15rem] flex-col justify-center overflow-hidden rounded-2xl border border-line bg-surface p-8">
+              {/* Name large, role underneath, anchored left */}
+              <div className="relative z-10 max-w-[58%]">
+                <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+                  {f.name}
+                </h3>
+                <p className="mt-2 font-mono text-xs uppercase tracking-widest text-faint">
+                  {f.role}
+                </p>
+              </div>
+
+              {/* Portrait bleeds past the card edge, clipped, slightly faded */}
+              {f.img && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={f.img}
+                  alt={`${f.name} pixel-art portrait`}
+                  draggable={false}
+                  className="absolute select-none"
+                  style={{
+                    right: "-2.5rem",
+                    bottom: "-2.75rem",
+                    height: "15rem",
+                    width: "15rem",
+                    opacity: 0.82,
+                    maskImage:
+                      "linear-gradient(to bottom right, black 55%, rgba(0,0,0,0.55) 100%)",
+                    WebkitMaskImage:
+                      "linear-gradient(to bottom right, black 55%, rgba(0,0,0,0.55) 100%)",
+                  }}
+                />
+              )}
             </div>
           </Reveal>
         ))}
@@ -169,7 +187,7 @@ function Founders() {
 const values = [
   { t: "Ownership", d: "Treat the company as your own. Own outcomes, not just tasks." },
   { t: "Think holistically", d: "See the whole system, not just the piece in front of you." },
-  { t: "Be honest", d: "Candour over comfort — about progress, mistakes, and life." },
+  { t: "Be honest", d: "Candour over comfort, about progress, mistakes, and life." },
   { t: "Solve, then decide", d: "Orient on the problem, discuss openly, make the call, move." },
   { t: "Experiment, fail fast, learn", d: "Try things, fail fast, and learn from what breaks." },
   { t: "Keep your word", d: "Doing what you said, when you said, is respect." },
@@ -213,7 +231,7 @@ function Group() {
         </h2>
         <p className="mt-6 text-muted">
           Zyflow is the services arm of Pragee Technologies. The group&rsquo;s
-          products arm ships software of its own — and over time, the agents we
+          products arm ships software of its own, and over time, the agents we
           build for clients harden into ready-made products anyone can buy.
         </p>
       </div>
@@ -237,7 +255,7 @@ function Group() {
             <span className="eyebrow text-spark">Products arm</span>
             <h3 className="mt-4 font-display text-2xl font-bold">Promptick</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              An AI model comparison platform — test and compare models for the
+              An AI model comparison platform, test and compare models for the
               same use case before you commit. The first product, with more to
               come.
             </p>

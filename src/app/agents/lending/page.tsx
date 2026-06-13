@@ -29,7 +29,7 @@ export default function LoanBrokerPage() {
       <Contact
         defaultInterest="Loan broker agent"
         heading="See Sterling run one of your real cases."
-        blurb="Book a demo and we'll process a sample application end-to-end — so you can judge the case pack, the screening and the time saved on your own deals."
+        blurb="Book a demo and we'll process a sample application end-to-end, so you can judge the case pack, the screening and the time saved on your own deals."
       />
     </>
   );
@@ -59,7 +59,7 @@ function Hero() {
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
             Sterling runs a broker&rsquo;s entire pre-submission workflow
-            autonomously — enriching financials, detecting the right products,
+            autonomously, enriching financials, detecting the right products,
             screening against lender rules and chasing missing documents. You
             get a submission-ready case pack. It recommends; you always decide.
           </p>
@@ -84,7 +84,27 @@ function Hero() {
             ))}
           </dl>
         </div>
-        <div className="flex justify-center lg:justify-end">
+        <div className="flex flex-col items-center gap-10 lg:items-end">
+          {/* Sterling's brand persona, idling above the funnel */}
+          <div className="persona-float relative">
+            <div
+              className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-citron/30 blur-3xl"
+              aria-hidden
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/agents/sterling.svg"
+              alt="Sterling pixel-art persona"
+              draggable={false}
+              className="pixelated relative select-none"
+              style={{
+                height: "9rem",
+                width: "auto",
+                filter:
+                  "drop-shadow(0 6px 14px color-mix(in srgb, var(--color-citron) 35%, transparent))",
+              }}
+            />
+          </div>
           <LendingFunnel />
         </div>
       </Section>
@@ -106,7 +126,7 @@ function Problem() {
             and accounts, looking up the company, working out which lender
             products fit, checking decline criteria, and emailing the borrower
             for the three documents they forgot. It&rsquo;s 4–6 hours of skilled
-            work per file — and it&rsquo;s the bottleneck between a hot enquiry
+            work per file, and it&rsquo;s the bottleneck between a hot enquiry
             and a submitted case.
           </p>
         </div>
@@ -118,7 +138,7 @@ function Problem() {
 /* ---------------- How it works ---------------- */
 const lifecycle = [
   { k: "Intake", d: "The borrower's application and documents land by email. Sterling reads and structures them automatically." },
-  { k: "Detection", d: "It works out which of the lending products the deal fits — including multi-facility scenarios." },
+  { k: "Detection", d: "It works out which of the lending products the deal fits, including multi-facility scenarios." },
   { k: "Enrichment", d: "Company financials are pulled from Companies House and attached to the case." },
   { k: "Screening", d: "The deal is checked against each lender's decline rules before it ever goes out." },
   { k: "Case pack", d: "A structured, submission-ready summary is staged for your review and sign-off." },
@@ -153,7 +173,7 @@ const caps = [
   {
     icon: "doc",
     t: "Document processing",
-    d: "Bank statements, filed accounts, ID and credit reports parsed and structured — no manual data entry.",
+    d: "Bank statements, filed accounts, ID and credit reports parsed and structured, no manual data entry.",
   },
   {
     icon: "search",
@@ -168,7 +188,7 @@ const caps = [
   {
     icon: "shield",
     t: "Decline-rule screening",
-    d: "Configurable lender criteria — turnover, sector, purpose, credit — checked before submission.",
+    d: "Configurable lender criteria, turnover, sector, purpose, credit, checked before submission.",
   },
   {
     icon: "mail",
@@ -178,7 +198,7 @@ const caps = [
   {
     icon: "chart",
     t: "Pipeline visibility",
-    d: "Every case and its status in one view — what's ready, what's waiting, what's at risk.",
+    d: "Every case and its status in one view, what's ready, what's waiting, what's at risk.",
   },
 ];
 
@@ -215,7 +235,7 @@ function CasePack() {
     ["Facility detected", "SME term loan + bridging (blended)"],
     ["Companies House", "Filings & accounts attached ✓"],
     ["Decline screening", "Passed · 0 flags against lender criteria"],
-    ["Outstanding docs", "None — borrower chased & complete"],
+    ["Outstanding docs", "None, borrower chased & complete"],
     ["Recommendation", "Submit to Lender A · broker to confirm"],
   ];
   return (
@@ -227,14 +247,14 @@ function CasePack() {
             A case pack you can actually submit.
           </h2>
           <p className="mt-6 max-w-md text-muted">
-            Not a chat transcript — a structured summary with the financials,
+            Not a chat transcript, a structured summary with the financials,
             the product fit, the screening result and a clear recommendation.
             Every claim is backed by the source document, so you can trust it at
             a glance and sign off in minutes.
           </p>
           <p className="mt-6 max-w-md text-sm text-faint">
             Sterling never makes the lending decision. It does the legwork and
-            hands you a defensible recommendation — the call is always yours.
+            hands you a defensible recommendation, the call is always yours.
           </p>
         </div>
         <Reveal>
@@ -310,7 +330,7 @@ function Audience() {
               instead of end of week.
             </blockquote>
             <figcaption className="mt-6 text-sm text-faint">
-              — Director, commercial finance brokerage{" "}
+             , Director, commercial finance brokerage{" "}
               <span className="text-faint/60">(anonymised pilot)</span>
             </figcaption>
           </figure>

@@ -1,12 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// Heavy WebGL bundle — never SSR'd, only loaded client-side after first paint.
+// Heavy WebGL bundle, never SSR'd, only loaded client-side after first paint.
 const AgentCore = dynamic(() => import("./AgentCore"), { ssr: false });
 
-/* CSS aurora fallback — shown on mobile, reduced-motion, or before the 3D mounts. */
+/* CSS aurora fallback, shown on mobile, reduced-motion, or before the 3D mounts. */
 function AuroraFallback() {
   return (
     <div className="absolute inset-0 grid place-items-center lg:left-[42%]">
@@ -22,6 +22,8 @@ function AuroraFallback() {
 
 export function AgentCoreCanvas() {
   const [enable3D, setEnable3D] = useState(false);
+  const [active, setActive] = useState(true);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const reduced = window.matchMedia(
@@ -41,9 +43,35 @@ export function AgentCoreCanvas() {
     return () => clearTimeout(t);
   }, []);
 
+  // Drive the orb's render loop only while it's actually on-screen and the
+  // tab is visible, frees the GPU once the user scrolls past the hero.
+  useEffect(() => {
+    if (!enable3D) return;
+    const el = wrapRef.current;
+    if (!el) return;
+
+    let onScreen = true;
+    const update = () => setActive(onScreen && !document.hidden);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        onScreen = entry.isIntersecting;
+        update();
+      },
+      { threshold: 0.01 }
+    );
+    io.observe(el);
+    document.addEventListener("visibilitychange", update);
+
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", update);
+    };
+  }, [enable3D]);
+
   return (
-    <div className="absolute inset-0">
-      {enable3D ? <AgentCore /> : <AuroraFallback />}
+    <div ref={wrapRef} className="absolute inset-0">
+      {enable3D ? <AgentCore active={active} /> : <AuroraFallback />}
     </div>
   );
 }

@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
-import { Icon } from "@/components/ui/Icon";
 import { Process } from "@/components/home/Process";
+import { Customers } from "@/components/home/Customers";
 import { Contact } from "@/components/home/Contact";
+import { BuildPrinter } from "@/components/services/BuildPrinter";
 
 export const metadata: Metadata = {
   title: "AI Services",
   description:
-    "Zyflow's services arm makes companies AI-enabled: AI-enablement of teams, agent development & creation, agent & AI infrastructure, and custom development — delivered against your hardest workflows.",
+    "Zyflow's services arm makes companies AI-enabled: AI-enablement of teams, agent development & creation, agent & AI infrastructure, and custom development, delivered against your hardest workflows.",
   alternates: { canonical: "/services" },
 };
 
@@ -17,6 +18,7 @@ export default function ServicesPage() {
   return (
     <>
       <Hero />
+      <Customers />
       <Problem />
       <Offerings />
       <Bridge />
@@ -25,7 +27,7 @@ export default function ServicesPage() {
       <Contact
         defaultInterest="AI services"
         heading="Bring us your hardest workflow."
-        blurb="Book a free scoping workshop. We'll map one high-friction workflow with your team, baseline what it costs you today, and show you exactly where AI pays off — whether or not you proceed."
+        blurb="Book a free scoping workshop. We'll map one high-friction workflow with your team, baseline what it costs you today, and show you exactly where AI pays off, whether or not you proceed."
       />
     </>
   );
@@ -37,7 +39,7 @@ function Hero() {
     <section className="relative overflow-hidden pt-16">
       <div className="pointer-events-none absolute inset-0 grid-lines opacity-40" />
       <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-glacier/10 blur-3xl" />
-      <Section className="relative py-24 lg:py-32">
+      <Section className="relative grid items-center gap-12 py-24 lg:grid-cols-[1.2fr_1fr] lg:py-32">
         <div className="max-w-3xl">
           <p className="eyebrow">Services · For every team</p>
           <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl">
@@ -45,7 +47,7 @@ function Hero() {
             <span className="flux-text">AI-enabled.</span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted">
-            We make companies AI-enabled end to end — enabling your teams,
+            We make companies AI-enabled end to end, enabling your teams,
             building custom agents, running the infrastructure, and shipping
             the software around it. Services-led, measured against your
             baseline.
@@ -59,6 +61,9 @@ function Hero() {
             </Button>
           </div>
         </div>
+
+        {/* The build line, every engagement comes off this printer */}
+        <BuildPrinter />
       </Section>
     </section>
   );
@@ -77,7 +82,7 @@ function Problem() {
             A pilot impresses, then nothing ships: the team isn&rsquo;t
             trained, the agent isn&rsquo;t wired into real tools, inference
             costs surprise everyone, and the surrounding software was never
-            built. We work the other way around — start from one real
+            built. We work the other way around, start from one real
             workflow, deliver against a measured baseline, and only scale what
             proves out.
           </p>
@@ -91,9 +96,9 @@ function Problem() {
 const offerings = [
   {
     id: "enablement",
-    icon: "users",
+    icon: "/agents/svc-teams.svg",
     t: "AI-enablement of teams",
-    d: "We train your people and wire AI into how each team actually works — adoption that sticks, not a one-off workshop.",
+    d: "We train your people and wire AI into how each team actually works, adoption that sticks, not a one-off workshop.",
     points: [
       "Team training on AI tooling & agents",
       "Workflow-level AI integration",
@@ -102,9 +107,9 @@ const offerings = [
   },
   {
     id: "agent-development",
-    icon: "sparkle",
+    icon: "/agents/svc-brain.svg",
     t: "Agent development & creation",
-    d: "Custom deep agents for your workflows, executives and verticals — grounded in your tools and data, human in command.",
+    d: "Custom deep agents for your workflows, executives and verticals, grounded in your tools and data, human in command.",
     points: [
       "Custom agents per workflow or vertical",
       "Personal agents for executives",
@@ -113,9 +118,9 @@ const offerings = [
   },
   {
     id: "infrastructure",
-    icon: "plug",
+    icon: "/agents/svc-stars.svg",
     t: "Agent & AI infrastructure",
-    d: "Model strategy, deployment, monitoring and spend guardrails — the platform under it all, built cost-conscious from the start.",
+    d: "Model strategy, deployment, monitoring and spend guardrails, the platform under it all, built cost-conscious from the start.",
     points: [
       "Multi-provider model strategy",
       "Cost guardrails & budget control",
@@ -124,9 +129,9 @@ const offerings = [
   },
   {
     id: "custom-development",
-    icon: "code",
+    icon: "/agents/svc-cursor.png",
     t: "Custom development",
-    d: "Full-stack software — the dashboards, integrations and internal tools your AI workflows (and the rest of your business) live in.",
+    d: "Full-stack software, the dashboards, integrations and internal tools your AI workflows (and the rest of your business) live in.",
     points: [
       "Web apps, dashboards & APIs",
       "Tool & system integrations",
@@ -151,8 +156,19 @@ function Offerings() {
               id={o.id}
               className="group flex h-full scroll-mt-24 flex-col rounded-2xl border border-line bg-surface p-8 transition-colors duration-300 hover:bg-surface-2"
             >
-              <div className="grid h-11 w-11 place-items-center rounded-xl border border-line bg-ink text-glacier">
-                <Icon name={o.icon} />
+              <div
+                className="grid place-items-center rounded-xl border border-line bg-ink"
+                style={{ height: "3.25rem", width: "3.25rem" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={o.icon}
+                  alt=""
+                  draggable={false}
+                  loading="eager"
+                  className="svc-icon-bright select-none object-contain"
+                  style={{ height: "2.25rem", width: "2.25rem" }}
+                />
               </div>
               <h3 className="mt-5 font-display text-xl font-semibold">{o.t}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">{o.d}</p>
@@ -183,7 +199,7 @@ function Bridge() {
           Services and agents are two halves of one company.
         </p>
         <p className="mx-auto mt-5 max-w-xl text-sm text-muted">
-          These services stand on their own — including software with nothing
+          These services stand on their own, including software with nothing
           to do with AI. When a workflow is a fit, our ready-made{" "}
           <Link href="/#agents" className="text-bone underline underline-offset-4 hover:text-glacier">
             agents

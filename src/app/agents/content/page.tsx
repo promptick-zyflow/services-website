@@ -53,7 +53,7 @@ export default function ContentPage() {
             <span className="flux-text">run by two agents.</span>
           </>
         }
-        subhead="A Director sets the strategy, calendar and brand voice. A Creator produces the work — from long-form to social-native video — on a single deterministic plan. Every piece passes a quality gate before it ships, with your team in the loop."
+        subhead="A Director sets the strategy, calendar and brand voice. A Creator produces the work, from long-form to social-native video, on a single deterministic plan. Every piece passes a quality gate before it ships, with your team in the loop."
         stats={[
           { v: "Two agents", l: "strategy + production" },
           { v: "One voice", l: "brand consistency, enforced" },
@@ -64,7 +64,7 @@ export default function ContentPage() {
 
       <Banner
         heading="Content breaks at the seam between strategy and execution."
-        body="Strategy lives in one head, production in another. Brand voice drifts the moment volume goes up, freelancers come and go, and the calendar slips. Scaling output usually means scaling the inconsistency with it — louder, but not better."
+        body="Strategy lives in one head, production in another. Brand voice drifts the moment volume goes up, freelancers come and go, and the calendar slips. Scaling output usually means scaling the inconsistency with it, louder, but not better."
       />
 
       {/* Two-agent profiles */}
@@ -75,7 +75,7 @@ export default function ContentPage() {
             Two specialists, one engine.
           </h2>
           <p className="mt-6 text-muted">
-            Not one generalist trying to do everything — a Director that owns the
+            Not one generalist trying to do everything, a Director that owns the
             plan and the brand, and a Creator that executes against it. The
             Director reviews what the Creator makes, so quality scales with
             volume instead of fighting it.
@@ -121,7 +121,7 @@ export default function ContentPage() {
         accent="spark"
         heading="Where the engine earns its keep."
         cards={[
-          { who: "Marketing teams", icon: "megaphone", benefit: "Run campaigns at scale without diluting the brand — strategy and output stay in sync." },
+          { who: "Marketing teams", icon: "megaphone", benefit: "Run campaigns at scale without diluting the brand, strategy and output stay in sync." },
           { who: "Agencies", icon: "users", benefit: "Produce white-label content for multiple clients, each with its own enforced voice." },
           { who: "Internal comms", icon: "mail", benefit: "Keep newsletters, announcements and updates consistent, on-message and on-time." },
         ]}
@@ -132,11 +132,11 @@ export default function ContentPage() {
         accent="spark"
         heading="Volume you can actually publish."
         items={[
-          { icon: "palette", t: "Brand-voice consistency", d: "A defined voice the Creator writes to and the Director enforces — every piece, every channel." },
+          { icon: "palette", t: "Brand-voice consistency", d: "A defined voice the Creator writes to and the Director enforces, every piece, every channel." },
           { icon: "shield", t: "Original & checked", d: "Plagiarism-free output, fact-reviewed before it reaches you." },
           { icon: "search", t: "SEO built in", d: "Long-form structured for search intent, not bolted on after the fact." },
-          { icon: "film", t: "Deterministic production", d: "Video and rich media run from a single plan, so output is repeatable — not a slot-machine pull." },
-          { icon: "check", t: "Human in the loop", d: "Review and approval gates wherever you want them — you sign off before publish." },
+          { icon: "film", t: "Deterministic production", d: "Video and rich media run from a single plan, so output is repeatable, not a slot-machine pull." },
+          { icon: "check", t: "Human in the loop", d: "Review and approval gates wherever you want them, you sign off before publish." },
           { icon: "loop", t: "A learning loop", d: "Performance feeds back into strategy, so the next cycle is sharper than the last." },
         ]}
       />
@@ -154,14 +154,14 @@ export default function ContentPage() {
 
       <EngagementBand
         heading="Stand up your content engine on one campaign."
-        body="We define your brand voice with the Director, produce a real batch with the Creator, and route it through your review gate — so you can judge the quality and the consistency before scaling it."
+        body="We define your brand voice with the Director, produce a real batch with the Creator, and route it through your review gate, so you can judge the quality and the consistency before scaling it."
         cta="See sample output"
       />
 
       <Contact
         defaultInterest="Content agents"
         heading="Scale content without losing the brand."
-        blurb="Book a demo and we'll define your voice, produce a sample batch, and show you the Director–Creator loop — including the quality gate that runs before anything ships."
+        blurb="Book a demo and we'll define your voice, produce a sample batch, and show you the Director–Creator loop, including the quality gate that runs before anything ships."
       />
     </>
   );

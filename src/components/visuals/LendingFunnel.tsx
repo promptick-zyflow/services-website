@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 /**
  * Sterling as a funnel: many raw applications narrow, stage by stage, into a
  * single submission-ready case pack. A "deal" pulse travels down the spine.
- * Bespoke to the lending pipeline — intake → enrich → detect → screen → pack.
+ * Bespoke to the lending pipeline, intake → enrich → detect → screen → pack.
  */
 
 const stages = [
@@ -64,7 +64,7 @@ export function LendingFunnel() {
           </motion.div>
         ))}
 
-        {/* Output — the case pack */}
+        {/* Output, the case pack */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}

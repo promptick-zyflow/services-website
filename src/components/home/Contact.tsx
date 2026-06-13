@@ -1,5 +1,6 @@
 import { Section, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
+import { SectionView } from "@/components/site/SectionView";
 import { LeadForm } from "@/components/leadform/LeadForm";
 
 export function Contact({
@@ -12,6 +13,7 @@ export function Contact({
   blurb?: string;
 }) {
   return (
+    <SectionView name="contact">
     <Section id="contact" className="py-28">
       <div className="relative overflow-hidden rounded-3xl border border-line bg-ink/60 p-8 sm:p-12 lg:p-16">
         <div className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-citron/10 blur-3xl" />
@@ -64,5 +66,6 @@ export function Contact({
         </div>
       </div>
     </Section>
+    </SectionView>
   );
 }

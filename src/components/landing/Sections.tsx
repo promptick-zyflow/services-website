@@ -1,7 +1,7 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
+import { TrackedLink } from "@/components/site/TrackedLink";
 import { Icon } from "@/components/ui/Icon";
 
 type Accent = "citron" | "glacier" | "spark";
@@ -35,14 +35,16 @@ export function LandingHero({
         className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full blur-3xl"
         style={{ background: accentHex(accent), opacity: 0.1 }}
       />
-      <Section className="relative grid gap-14 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
+      <Section view="agent-hero" className="relative grid gap-14 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
         <div>
-          <Link
+          <TrackedLink
             href="/#agents"
+            event="clicked-nav-link"
+            eventProps={{ label: "← Zyflow agents", destination: "/#agents", location: "agent-hero" }}
             className="eyebrow inline-flex items-center gap-2 transition-colors hover:text-muted"
           >
             ← Zyflow agents
-          </Link>
+          </TrackedLink>
           <p
             className="mt-6 font-mono text-sm"
             style={{ color: accentHex(accent) }}
@@ -109,7 +111,7 @@ export function Banner({
   body: ReactNode;
 }) {
   return (
-    <Section className="py-20">
+    <Section view="problem" className="py-20">
       <div className="rounded-3xl border border-line bg-surface/50 p-8 sm:p-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-center">
           <h2 className="font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
@@ -143,7 +145,7 @@ export function StepFlow({
         ? "md:grid-cols-5"
         : "md:grid-cols-4";
   return (
-    <Section id={id} className="py-24">
+    <Section id={id} view={eyebrow} className="py-24">
       <div className="max-w-2xl">
         <Eyebrow>{eyebrow}</Eyebrow>
         <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
@@ -186,7 +188,7 @@ export function CapabilityGrid({
   accent?: Accent;
 }) {
   return (
-    <Section className="py-24">
+    <Section view={eyebrow} className="py-24">
       <div>
         <Eyebrow>{eyebrow}</Eyebrow>
         <h2 className="mt-5 max-w-xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
@@ -228,7 +230,7 @@ export function FeatureSplit({
   reverse?: boolean;
 }) {
   return (
-    <Section className="py-24">
+    <Section view={eyebrow} className="py-24">
       <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
         <div className={reverse ? "lg:order-2" : ""}>
           <Eyebrow>{eyebrow}</Eyebrow>
@@ -257,7 +259,7 @@ export function BenefitCards({
   accent?: Accent;
 }) {
   return (
-    <Section className="py-24">
+    <Section view={eyebrow} className="py-24">
       <div className="max-w-2xl">
         <Eyebrow>{eyebrow}</Eyebrow>
         <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
@@ -304,7 +306,7 @@ export function Quote({
   accent?: Accent;
 }) {
   return (
-    <Section className="py-16">
+    <Section view="quote" className="py-16">
       <figure className="relative mx-auto max-w-3xl rounded-3xl border border-line bg-ink/40 p-10 text-center sm:p-14">
         <span
           className="font-display text-5xl"
@@ -333,7 +335,7 @@ export function Integrations({
   items: string[];
 }) {
   return (
-    <Section className="py-16">
+    <Section view="integrations" className="py-16">
       <div className="rounded-3xl border border-line bg-surface/40 p-8 sm:p-10">
         <p className="text-center text-sm text-faint">{heading}</p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
@@ -364,7 +366,7 @@ export function AudienceChips({
   aside: ReactNode;
 }) {
   return (
-    <Section className="py-24">
+    <Section view={eyebrow} className="py-24">
       <div className="rounded-3xl border border-line bg-gradient-to-b from-surface to-ink/60 p-8 sm:p-12 lg:p-16">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
@@ -401,7 +403,7 @@ export function EngagementBand({
   cta?: string;
 }) {
   return (
-    <Section className="py-24">
+    <Section view="engagement" className="py-24">
       <div className="rounded-3xl border border-line bg-surface/50 p-8 text-center sm:p-14">
         <Eyebrow className="justify-center">Engagement</Eyebrow>
         <h2 className="mx-auto mt-5 max-w-2xl font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl">

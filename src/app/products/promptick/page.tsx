@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
+import { SectionView } from "@/components/site/SectionView";
 import { Icon } from "@/components/ui/Icon";
 
 export const metadata: Metadata = {
@@ -13,9 +14,9 @@ export const metadata: Metadata = {
 export default function PromptickPage() {
   return (
     <>
-      <Hero />
-      <WhatItDoes />
-      <FromTheGroup />
+      <SectionView name="promptick-hero"><Hero /></SectionView>
+      <SectionView name="what-it-does"><WhatItDoes /></SectionView>
+      <SectionView name="from-the-group"><FromTheGroup /></SectionView>
     </>
   );
 }

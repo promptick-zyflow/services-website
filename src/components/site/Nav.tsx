@@ -57,13 +57,7 @@ export function Nav() {
             href="/contact"
             variant="primary"
             className="px-5 py-2.5"
-            onClick={() =>
-              track(EVENTS.clickedButton, {
-                label: "Book a demo",
-                destination: "/contact",
-                location: "header",
-              })
-            }
+            trackLocation="header"
           >
             Book a demo
           </Button>
@@ -118,13 +112,7 @@ export function Nav() {
               href="/contact"
               variant="primary"
               className="mt-2 w-full"
-              onClick={() =>
-                track(EVENTS.clickedButton, {
-                  label: "Book a demo",
-                  destination: "/contact",
-                  location: "mobile-nav",
-                })
-              }
+              trackLocation="mobile-nav"
             >
               Book a demo
             </Button>

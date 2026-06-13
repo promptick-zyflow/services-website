@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Section, Eyebrow } from "@/components/ui/Primitives";
 import { AgentMarket } from "@/components/agents/AgentMarket";
 import { Contact } from "@/components/home/Contact";
+import { SectionView } from "@/components/site/SectionView";
 
 export const metadata: Metadata = {
   title: "Agent Marketplace",
@@ -15,7 +16,7 @@ export default function AgentsPage() {
     <>
       <section className="relative overflow-hidden pt-16">
         <div className="pointer-events-none absolute inset-0 grid-lines opacity-40" />
-        <Section className="relative py-20 lg:py-24">
+        <Section view="agents-hero" className="relative py-20 lg:py-24">
           <div className="max-w-2xl">
             <Eyebrow>Agent marketplace</Eyebrow>
             <h1 className="mt-5 font-display text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl">
@@ -30,7 +31,7 @@ export default function AgentsPage() {
         </Section>
       </section>
 
-      <AgentMarket />
+      <SectionView name="agent-market"><AgentMarket /></SectionView>
 
       <Contact
         defaultInterest="Agents"

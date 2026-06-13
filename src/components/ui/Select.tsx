@@ -11,11 +11,13 @@ export function Select({
   name,
   options,
   defaultValue,
+  onChange,
 }: {
   id?: string;
   name: string;
   options: string[];
   defaultValue?: string;
+  onChange?: (value: string) => void;
 }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(defaultValue ?? options[0]);
@@ -42,6 +44,7 @@ export function Select({
   }, [open]);
 
   const choose = (o: string) => {
+    if (o !== value) onChange?.(o);
     setValue(o);
     setOpen(false);
   };

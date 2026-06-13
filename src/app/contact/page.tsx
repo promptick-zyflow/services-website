@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Section, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 import { Contact } from "@/components/home/Contact";
+import { TrackedEmail } from "@/components/site/TrackedEmail";
+import { SectionView } from "@/components/site/SectionView";
 import { site } from "@/lib/site";
 
 const locations = [
@@ -93,7 +95,7 @@ export default function ContactPage() {
     <>
       <section className="relative overflow-hidden pt-16">
         <div className="pointer-events-none absolute inset-0 grid-lines opacity-40" />
-        <Section className="relative pt-24 lg:pt-32">
+        <Section view="contact-hero" className="relative pt-24 lg:pt-32">
           <div className="max-w-3xl">
             <p className="eyebrow">Contact</p>
             <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-tight sm:text-6xl">
@@ -104,17 +106,18 @@ export default function ContactPage() {
               Tell us about your goals or the workflow that hurts. We&rsquo;ll
               come back within a day, usually with a scoping-workshop slot.
               Prefer email?{" "}
-              <a
-                href={`mailto:${site.email}`}
+              <TrackedEmail
+                email={site.email}
+                location="contact-page"
                 className="text-bone underline underline-offset-4 hover:text-citron"
               >
                 {site.email}
-              </a>
+              </TrackedEmail>
             </p>
           </div>
         </Section>
       </section>
-      <Locations />
+      <SectionView name="locations"><Locations /></SectionView>
       <Contact
         heading="Start with a free scoping workshop."
         blurb="We'll map one high-friction workflow, baseline what it costs you today, and show you exactly where a deep agent pays off, whether or not you proceed."

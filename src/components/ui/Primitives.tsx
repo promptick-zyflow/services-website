@@ -1,5 +1,5 @@
-import Link from "next/link";
-import type { ComponentProps, MouseEventHandler, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { SectionBeacon } from "@/components/site/SectionBeacon";
 
 function cx(...parts: (string | false | undefined)[]) {
   return parts.filter(Boolean).join(" ");
@@ -7,52 +7,9 @@ function cx(...parts: (string | false | undefined)[]) {
 
 /* ---------------- Button ---------------- */
 
-type ButtonProps = {
-  href?: string;
-  variant?: "primary" | "ghost" | "line";
-  children: ReactNode;
-  className?: string;
-} & Omit<ComponentProps<"button">, "ref">;
-
-export function Button({
-  href,
-  variant = "primary",
-  children,
-  className,
-  ...rest
-}: ButtonProps) {
-  const base =
-    "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ease-[var(--ease-out-expo)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]";
-  const styles = {
-    primary:
-      "bg-[var(--color-primary)] text-[#0a0a0a] hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-8px_var(--color-primary)]",
-    ghost:
-      "bg-surface-2 text-bone hover:bg-[#1c2029] border border-line",
-    line: "text-bone border border-line hover:border-bone/40 hover:bg-white/[0.03]",
-  }[variant];
-
-  const cls = cx(base, styles, className);
-  const { onClick, ...buttonRest } = rest;
-
-  if (href) {
-    const external = href.startsWith("http");
-    return (
-      <Link
-        href={href}
-        className={cls}
-        onClick={onClick as MouseEventHandler<HTMLAnchorElement> | undefined}
-        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      >
-        {children}
-      </Link>
-    );
-  }
-  return (
-    <button className={cls} onClick={onClick} {...buttonRest}>
-      {children}
-    </button>
-  );
-}
+// Button lives in its own client module (it self-tracks clicks); re-exported
+// here so existing `@/components/ui/Primitives` imports keep working.
+export { Button } from "./Button";
 
 /* ---------------- Section ---------------- */
 
@@ -60,10 +17,13 @@ export function Section({
   children,
   id,
   className,
+  view,
 }: {
   children: ReactNode;
   id?: string;
   className?: string;
+  /** When set, reports a `viewed-section` impression under this name. */
+  view?: string;
 }) {
   return (
     <section
@@ -73,6 +33,7 @@ export function Section({
         className
       )}
     >
+      {view && <SectionBeacon name={view} />}
       {children}
     </section>
   );

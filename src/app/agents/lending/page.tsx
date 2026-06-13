@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
+import { TrackedLink } from "@/components/site/TrackedLink";
+import { SectionView } from "@/components/site/SectionView";
 import { LendingFunnel } from "@/components/visuals/LendingFunnel";
 import { Contact } from "@/components/home/Contact";
 import { getAgent } from "@/lib/agents";
@@ -18,14 +19,14 @@ export const metadata: Metadata = {
 export default function LoanBrokerPage() {
   return (
     <>
-      <Hero />
-      <Problem />
-      <HowItWorks />
-      <Capabilities />
-      <CasePack />
-      <Audience />
-      <Trust />
-      <Engagement />
+      <SectionView name="agent-hero"><Hero /></SectionView>
+      <SectionView name="problem"><Problem /></SectionView>
+      <SectionView name="how-it-works"><HowItWorks /></SectionView>
+      <SectionView name="capabilities"><Capabilities /></SectionView>
+      <SectionView name="case-pack"><CasePack /></SectionView>
+      <SectionView name="audience"><Audience /></SectionView>
+      <SectionView name="trust"><Trust /></SectionView>
+      <SectionView name="engagement"><Engagement /></SectionView>
       <Contact
         defaultInterest="Loan broker agent"
         heading="See Sterling run one of your real cases."
@@ -43,12 +44,14 @@ function Hero() {
       <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-citron/10 blur-3xl" />
       <Section className="relative grid gap-14 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
         <div>
-          <Link
+          <TrackedLink
             href="/#agents"
+            event="clicked-nav-link"
+            eventProps={{ label: "← Zyflow agents", destination: "/#agents", location: "agent-hero" }}
             className="eyebrow inline-flex items-center gap-2 transition-colors hover:text-muted"
           >
             ← Zyflow agents
-          </Link>
+          </TrackedLink>
           <p className="mt-6 font-mono text-sm text-citron">
             codename: {agent.codename} · {agent.domain}
           </p>

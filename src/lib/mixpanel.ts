@@ -1,4 +1,5 @@
 import mixpanel, { type Dict } from "mixpanel-browser";
+import { agents } from "@/lib/agents";
 
 const token = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
 
@@ -12,8 +13,6 @@ let started = false;
    and reports stay easy to break down. See docs/analytics.md.
 ------------------------------------------------------------------ */
 export const EVENTS = {
-  landedPage: "landed-page",
-  viewedSection: "viewed-section",
   clickedNavLink: "clicked-nav-link",
   clickedLogo: "clicked-logo",
   openedMenu: "opened-menu",
@@ -22,6 +21,9 @@ export const EVENTS = {
   clickedButton: "clicked-button",
   clickedAgentCard: "clicked-agent-card",
   clickedFooterLink: "clicked-footer-link",
+  clickedEmail: "clicked-email",
+  searchedAgents: "searched-agents",
+  selectedInterest: "selected-interest",
   startedLeadForm: "started-lead-form",
   submittedLeadForm: "submitted-lead-form",
   completedLeadForm: "completed-lead-form",
@@ -64,21 +66,45 @@ export function pageNameFromPath(path: string): string {
   const clean = path.split("#")[0].split("?")[0].replace(/\/+$/, "");
   if (clean === "" || clean === "/") return "home";
   if (clean === "/agents") return "agents";
-  if (clean.startsWith("/agents/")) return "agent-" + clean.slice("/agents/".length);
+  // All agent detail pages share one template → one page name. The specific
+  // agent rides along as a super property (see setPageContext).
+  if (clean.startsWith("/agents/")) return "agent";
   if (clean.startsWith("/products/")) return clean.slice("/products/".length);
   return clean.slice(1).replace(/\//g, "-");
 }
 
+/** Route slug for an agent detail page, e.g. /agents/lending → "lending". */
+function agentSlugFromPath(path: string): string | null {
+  const clean = path.split("#")[0].split("?")[0].replace(/\/+$/, "");
+  const m = clean.match(/^\/agents\/([^/]+)$/);
+  return m ? m[1] : null;
+}
+
 /**
  * Register the current page as super properties, so every subsequent event
- * automatically carries `page` and `path` without each call site passing them.
+ * automatically carries `page` (and, on agent detail pages, which `agent`)
+ * without each call site passing them. Agent context is cleared when leaving
+ * an agent page so it never leaks onto other pages.
  */
 export function setPageContext(path: string) {
   if (!started) return;
-  mixpanel.register({
-    page: pageNameFromPath(path),
-    path: path.split("#")[0].split("?")[0],
-  });
+  const cleanPath = path.split("#")[0].split("?")[0];
+  const page = pageNameFromPath(path);
+  const slug = agentSlugFromPath(path);
+
+  if (slug) {
+    const codename = agents.find((a) => a.href === `/agents/${slug}`)?.codename;
+    mixpanel.register({
+      page,
+      path: cleanPath,
+      agent: slug,
+      ...(codename ? { codename } : {}),
+    });
+  } else {
+    mixpanel.register({ page, path: cleanPath });
+    mixpanel.unregister("agent");
+    mixpanel.unregister("codename");
+  }
 }
 
 /** Track a catalog event. No-ops until Mixpanel has been initialised. */
@@ -87,17 +113,37 @@ export function track(event: AnalyticsEvent, props?: Dict) {
   mixpanel.track(event, props);
 }
 
+/** Lowercase hyphen slug for embedding a name inside an event name. */
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 /**
- * Track a page view. Updates the page super-properties first (so this and all
- * later events on the page are attributed correctly), then fires `landed-page`.
- * Pass `path` for client-side navigations where `window.location` is still the
- * previous page; omit it on the initial load.
+ * Track a page view with a PAGE-SPECIFIC event name, e.g. `landed-home-page`,
+ * `landed-services-page`, `landed-agent-lending-page`. Updates the page
+ * super-properties first (so every later event on the page is attributed),
+ * then fires the named event. Pass `path` for client-side navigations where
+ * `window.location` is still the previous page; omit it on the initial load.
  */
 export function trackLandedPage(path?: string, extra?: Dict) {
   if (!started || typeof window === "undefined") return;
   const p = path ?? window.location.pathname;
   setPageContext(p);
-  mixpanel.track(EVENTS.landedPage, extra);
+  mixpanel.track(`landed-${pageNameFromPath(p)}-page`, extra);
+}
+
+/**
+ * Track a section impression with a SECTION-SPECIFIC event name, e.g.
+ * `viewed-hero-section`, `viewed-offerings-section`. The readable section name
+ * is also kept as the `section` property (alongside the page super property).
+ */
+export function trackSectionView(section: string) {
+  if (!started) return;
+  mixpanel.track(`viewed-${slugify(section)}-section`, { section });
 }
 
 /** Tie subsequent events to a known user (call from your auth flow). */

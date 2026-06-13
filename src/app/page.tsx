@@ -23,7 +23,7 @@ export default function Home() {
       <SectionView name="outcomes"><Outcomes /></SectionView>
       <SectionView name="process"><Process /></SectionView>
       <SectionView name="company"><Company /></SectionView>
-      <SectionView name="contact"><Contact /></SectionView>
+      <Contact />
     </>
   );
 }

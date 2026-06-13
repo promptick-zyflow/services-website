@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Section, accentVar, cx } from "@/components/ui/Primitives";
 import { agents, moreAgents } from "@/lib/agents";
@@ -40,6 +40,18 @@ export function AgentMarket() {
           matches([m.codename, m.name, m.blurb, m.industry])
         )
       : [];
+
+  const resultsCount = liveVisible.length + labVisible.length;
+
+  // Track searches once the user pauses typing, not on every keystroke.
+  useEffect(() => {
+    const q2 = query.trim();
+    if (!q2) return;
+    const t = setTimeout(() => {
+      track(EVENTS.searchedAgents, { query: q2, results: resultsCount });
+    }, 600);
+    return () => clearTimeout(t);
+  }, [query, resultsCount]);
 
   const FilterButton = ({ f }: { f: Filter }) => (
     <button

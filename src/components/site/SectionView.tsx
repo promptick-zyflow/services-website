@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
-import { track } from "@/lib/mixpanel";
+import { trackSectionView } from "@/lib/mixpanel";
 
 /**
  * Wraps a page section and fires `viewed-section` once, the first time at least
@@ -28,14 +28,16 @@ export function SectionView({
         if (entry?.isIntersecting && !fired.current) {
           fired.current = true;
           try {
-            track("viewed-section", { section: name });
+            trackSectionView(name);
           } catch {
             // ignore
           }
           io.disconnect();
         }
       },
-      { threshold: 0.3 },
+      // Fires once the section reaches the upper ~70% of the viewport — robust
+      // whether the section is shorter or much taller than the screen.
+      { threshold: 0, rootMargin: "0px 0px -30% 0px" },
     );
 
     io.observe(el);

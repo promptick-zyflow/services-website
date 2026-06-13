@@ -111,6 +111,7 @@ export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
             name="interest"
             options={interests}
             defaultValue={defaultInterest ?? interests[interests.length - 1]}
+            onChange={(value) => track(EVENTS.selectedInterest, { interest: value })}
           />
         </div>
       </div>
@@ -147,6 +148,7 @@ export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
         <Button
           type="submit"
           variant="primary"
+          noTrack
           disabled={status === "submitting"}
           className="w-full sm:w-auto disabled:opacity-60"
         >

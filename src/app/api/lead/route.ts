@@ -57,12 +57,18 @@ export async function POST(request: Request) {
   }
 
   // Optional: forward to a CRM / Slack / Zapier webhook if configured.
+  // For the Archer CRM ingest, LEAD_WEBHOOK_SECRET is sent as x-inbound-secret
+  // (must match Archer's INBOUND_LEAD_SECRET); harmless for other webhook targets.
   const webhook = process.env.LEAD_WEBHOOK_URL;
   if (webhook) {
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (process.env.LEAD_WEBHOOK_SECRET) {
+      headers["x-inbound-secret"] = process.env.LEAD_WEBHOOK_SECRET;
+    }
     try {
       await fetch(webhook, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify(lead),
       });
     } catch {

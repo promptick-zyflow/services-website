@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 /**
  * Steward as a board that keeps itself honest: an hourly health "sweep"
  * passes down the columns, and one at-risk card is flagged + escalated.
- * Bespoke to delivery — continuous monitoring, not a static kanban.
+ * Bespoke to delivery, continuous monitoring, not a static kanban.
  */
 
 const columns = [

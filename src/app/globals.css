@@ -93,6 +93,126 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* Crisp pixel-art rendering for the agent persona SVGs */
+.pixelated {
+  image-rendering: pixelated;
+}
+
+/* Hero home scene: interactive hotspots pulse softly so the walkable
+   spots are discoverable; hovering brightens the furniture underneath
+   and locks the border on. */
+@keyframes spot-pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.7; }
+}
+.home-spot {
+  border: 1.5px solid color-mix(in srgb, var(--color-primary) 70%, transparent);
+  border-radius: 8px;
+  animation: spot-pulse 2.6s ease-in-out infinite;
+  transition: box-shadow 0.3s ease;
+}
+.home-spot:hover,
+.home-spot:focus-visible {
+  animation: none;
+  opacity: 1;
+  border-color: var(--color-primary);
+  backdrop-filter: brightness(1.45) saturate(1.1);
+  box-shadow: 0 0 20px -4px var(--color-primary);
+}
+
+/* Blinking live indicator for agents in production */
+@keyframes live-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.live-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
+  animation: live-blink 1.6s ease-in-out infinite;
+}
+
+/* WIP lab cards: the dino jogs on the spot, the stone and orb get kicked */
+@keyframes dino-run {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-6%) rotate(-2deg); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-4%) rotate(2deg); }
+}
+.dino-run {
+  animation: dino-run 0.55s linear infinite;
+}
+
+@keyframes kick-away {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  12% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  50% { transform: translate(3.4rem, -1.7rem) rotate(210deg); opacity: 1; }
+  72% { transform: translate(5.6rem, 0.5rem) rotate(340deg); opacity: 0; }
+  73% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+}
+.kick-away {
+  animation: kick-away 2.8s ease-in-out infinite;
+}
+
+/* Agent persona idle float on the landing-page heroes */
+@keyframes persona-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.persona-float {
+  animation: persona-float 4.2s ease-in-out infinite;
+}
+
+/* Sterling bobs while walking between spots */
+@keyframes agent-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4%); }
+}
+.agent-bob {
+  animation: agent-bob 0.32s linear infinite;
+}
+
+/* Service-map pixel icons: gray at rest, brand-tinted when the chip is hovered */
+.svc-icon {
+  image-rendering: pixelated;
+  filter: grayscale(1) brightness(1.05);
+  opacity: 0.75;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.svc-chip:hover .svc-icon,
+.svc-chip:focus-visible .svc-icon {
+  /* grayscale → sepia → rotate into the brand azure */
+  filter: grayscale(1) sepia(1) saturate(3.2) hue-rotate(185deg) brightness(1.1);
+  opacity: 1;
+}
+
+/* Always-bright variant: brand azure at rest (services offering cards) */
+.svc-icon-bright {
+  image-rendering: pixelated;
+  filter: grayscale(1) sepia(1) saturate(3.2) hue-rotate(185deg) brightness(1.15);
+}
+
+/* Open industry card: no bounding box — content floats on the page.
+   !important because un-layered rules elsewhere pin border styles. */
+.card-open {
+  border-color: transparent !important;
+  border-width: 0 !important;
+  background: transparent !important;
+}
+
+/* Same film grain, scoped to a card (parent needs position + overflow-hidden) */
+.grain-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 /* Primary->Secondary gradient text */
 .flux-text {
   background: linear-gradient(
@@ -105,6 +225,9 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Italic glyphs overhang their advance width; without this the last
+     character gets clipped by the text-clip box. */
+  padding-right: 0.12em;
 }
 
 /* Eyebrow label */
@@ -165,6 +288,21 @@ body {
 }
 .animate-marquee {
   animation: marquee 38s linear infinite;
+}
+
+/* Use-case slide swap inside the industry cards */
+@keyframes slide-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.slide-fade {
+  animation: slide-fade 0.45s ease-out both;
 }
 
 /* Organic gradient wash that slowly breathes inside product cards */

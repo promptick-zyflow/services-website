@@ -3,14 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Icon } from "@/components/ui/Icon";
 
 /**
  * Services as a system map: four service offerings surround a glowing
  * "Your agents" core, connected by curved gradient lines that flow inward.
  * Hovering a node reveals its one-liner and brightens its connector.
  *
- * The hub-and-spoke shape is specific to this section's meaning — the four
+ * The hub-and-spoke shape is specific to this section's meaning, the four
  * services are everything *around* the agents.
  */
 
@@ -19,7 +18,7 @@ type Node = {
   label: string;
   line: string;
   href: string;
-  icon: string;
+  icon: string; // pixel-art icon path (public), gray at rest, brand on hover
   // position in the 800×520 viewBox, and the connector path from node → core
   pos: { x: number; y: number };
   path: string;
@@ -34,25 +33,25 @@ const nodes: Node[] = [
     label: "Team enablement",
     line: "Training and workflow-level integration, so AI adoption sticks beyond the workshop.",
     href: "/services#enablement",
-    icon: "users",
+    icon: "/agents/svc-teams.svg",
     pos: { x: 400, y: 72 },
     path: "M400 72 C 462 134 462 198 400 260",
   },
   {
     key: "agent-development",
     label: "Agent development",
-    line: "Custom deep agents for your workflows, CXOs and verticals — human always in command.",
+    line: "Custom deep agents for your workflows, CXOs and verticals, human always in command.",
     href: "/services#agent-development",
-    icon: "sparkle",
+    icon: "/agents/svc-brain.svg",
     pos: { x: 660, y: 260 },
     path: "M660 260 C 598 322 482 322 400 260",
   },
   {
     key: "infrastructure",
     label: "Agent & AI infrastructure",
-    line: "Model strategy, deployment and spend guardrails — the platform under the agents.",
+    line: "Model strategy, deployment and spend guardrails, the platform under the agents.",
     href: "/services#infrastructure",
-    icon: "plug",
+    icon: "/agents/svc-stars.svg",
     pos: { x: 400, y: 448 },
     path: "M400 448 C 338 386 338 322 400 260",
   },
@@ -61,7 +60,7 @@ const nodes: Node[] = [
     label: "Custom development",
     line: "The dashboards, integrations and tools that agent workflows need to live in your business.",
     href: "/services#custom-development",
-    icon: "code",
+    icon: "/agents/svc-cursor.png",
     pos: { x: 140, y: 260 },
     path: "M140 260 C 202 198 318 198 400 260",
   },
@@ -184,13 +183,21 @@ export function ServicesSystem() {
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(n.key)}
                 onBlur={() => setActive(null)}
-                className="group/node glass flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-primary)_45%,transparent)]"
+                className="svc-chip group/node glass flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-primary)_45%,transparent)]"
               >
                 <span
-                  className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line bg-ink text-[var(--color-primary)] transition-colors"
+                  className="grid shrink-0 place-items-center rounded-lg border border-line bg-ink"
+                  style={{ height: "2.75rem", width: "2.75rem" }}
                   aria-hidden
                 >
-                  <Icon name={n.icon} size={16} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={n.icon}
+                    alt=""
+                    draggable={false}
+                    className="svc-icon select-none object-contain"
+                    style={{ height: "2rem", width: "2rem" }}
+                  />
                 </span>
                 <span className="whitespace-nowrap text-sm font-medium text-bone">
                   {n.label}
@@ -200,7 +207,7 @@ export function ServicesSystem() {
           ))}
         </motion.div>
 
-        {/* Hover caption — fixed height so nothing shifts */}
+        {/* Hover caption, fixed height so nothing shifts */}
         <div className="mx-auto mt-6 flex min-h-[3.5rem] max-w-xl items-center justify-center text-center">
           {current ? (
             <motion.p
@@ -215,7 +222,7 @@ export function ServicesSystem() {
             </motion.p>
           ) : (
             <p className="text-sm text-faint">
-              Four services that make your business AI-enabled — hover one to
+              Four services that make your business AI-enabled, hover one to
               see what it does.
             </p>
           )}
@@ -226,9 +233,19 @@ export function ServicesSystem() {
       <ul className="space-y-px overflow-hidden rounded-2xl border border-line bg-line lg:hidden">
         {nodes.map((n) => (
           <li key={n.key}>
-            <Link href={n.href} className="flex gap-4 bg-surface p-5">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-line bg-ink text-[var(--color-primary)]">
-                <Icon name={n.icon} size={16} />
+            <Link href={n.href} className="svc-chip flex gap-4 bg-surface p-5">
+              <span
+                className="grid shrink-0 place-items-center rounded-lg border border-line bg-ink"
+                style={{ height: "2.75rem", width: "2.75rem" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={n.icon}
+                  alt=""
+                  draggable={false}
+                  className="svc-icon select-none object-contain"
+                  style={{ height: "2rem", width: "2rem" }}
+                />
               </span>
               <div>
                 <p className="font-display text-base font-semibold">{n.label}</p>

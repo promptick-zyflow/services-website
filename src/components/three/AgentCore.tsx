@@ -3,7 +3,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Icosahedron, MeshDistortMaterial, Float } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 
 // Pulled from the site's blue theme tokens (see globals.css):
@@ -29,7 +29,7 @@ function Core() {
   return (
     <group>
       <Float speed={1.4} rotationIntensity={0.4} floatIntensity={0.6}>
-        <Icosahedron ref={inner} args={[1, 6]}>
+        <Icosahedron ref={inner} args={[1, 4]}>
           <MeshDistortMaterial
             color={PRIMARY}
             emissive={PRIMARY}
@@ -90,7 +90,7 @@ function OrbitNodes() {
   );
 }
 
-/* Deterministic pseudo-random in [0,1) — keeps the dust stable across
+/* Deterministic pseudo-random in [0,1), keeps the dust stable across
    renders and satisfies the react-hooks/purity rule (no Math.random()). */
 function hashRand(n: number) {
   const x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
@@ -151,22 +151,51 @@ function Rig({ children }: { children: React.ReactNode }) {
   return <group ref={group}>{children}</group>;
 }
 
-export default function AgentCore() {
+function AgentScene() {
+  const { viewport } = useThree();
+  const [isLarge, setIsLarge] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+    setIsLarge(media.matches);
+    const listener = (e: MediaQueryListEvent) => setIsLarge(e.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, []);
+
+  // Position the globe on the right for large screens (lg), centered for others
+  const xOffset = isLarge ? viewport.width * 0.18 : 0;
+
   return (
-    <Canvas
-      camera={{ position: [0, 0, 7], fov: 42 }}
-      dpr={[1, 1.6]}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      style={{ background: "transparent" }}
-    >
+    <>
       <ambientLight intensity={0.4} />
       <pointLight position={[5, 5, 5]} intensity={40} color={PRIMARY} />
       <pointLight position={[-6, -3, -4]} intensity={30} color={SECONDARY} />
       <Rig>
-        <Core />
-        <OrbitNodes />
-        <Dust />
+        <group position={[xOffset, 0, 0]}>
+          <Core />
+          <OrbitNodes />
+        </group>
+        <Dust count={500} />
       </Rig>
+    </>
+  );
+}
+
+export default function AgentCore({ active = true }: { active?: boolean }) {
+  return (
+    <Canvas
+      // Pause the render loop entirely when the orb is off-screen or the tab
+      // is hidden, no GPU work when nobody's looking at it.
+      frameloop={active ? "always" : "never"}
+      camera={{ position: [0, 0, 7], fov: 42 }}
+      dpr={[1, 1.5]}
+      // antialias off on the canvas: the EffectComposer renders to its own
+      // buffer, so canvas-level MSAA is wasted work here.
+      gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+      style={{ background: "transparent" }}
+    >
+      <AgentScene />
       <EffectComposer>
         <Bloom
           intensity={0.9}

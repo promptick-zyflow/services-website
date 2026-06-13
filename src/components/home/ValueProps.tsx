@@ -1,13 +1,13 @@
 import { Section, Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
 
-// Company-level principles — how we work across both pillars (agents and
+// Company-level principles, how we work across both pillars (agents and
 // services), one line each.
 const props = [
   {
     n: "01",
     title: "We own the outcome",
-    line: "Finished, working results you can act on — whether that’s an agent, a custom build, or your team enabled. Not a demo.",
+    line: "Finished, working results you can act on, whether that’s an agent, a custom build, or your team enabled. Not a demo.",
   },
   {
     n: "02",
@@ -22,7 +22,7 @@ const props = [
   {
     n: "04",
     title: "Start small, scale on proof",
-    line: "One workflow, measured against your baseline. We earn each step before the next — no big-bang transformation.",
+    line: "One workflow, measured against your baseline. We earn each step before the next, no big-bang transformation.",
   },
 ];
 
@@ -38,12 +38,12 @@ export function ValueProps() {
             <span className="text-muted">Not a demo.</span>
           </h2>
           <p className="mt-6 max-w-sm text-muted">
-            Agents, custom builds, or your own team enabled to run AI — however
+            Agents, custom builds, or your own team enabled to run AI, however
             we deliver, you get working outcomes measured against your baseline.
           </p>
         </div>
 
-        {/* Editorial rows — one principle, one line, hairline-separated */}
+        {/* Editorial rows, one principle, one line, hairline-separated */}
         <ul className="border-t border-line">
           {props.map((p, i) => (
             <Reveal as="li" key={p.n} i={i}>

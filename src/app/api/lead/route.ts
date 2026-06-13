@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  // Honeypot — silently accept and drop.
+  // Honeypot, silently accept and drop.
   if (clean(body.company_website)) {
     return NextResponse.json({ ok: true });
   }
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
   }
 
   // Best-effort local persistence (works in dev / long-running servers;
-  // serverless filesystems are ephemeral, which is fine — the webhook is canonical).
+  // serverless filesystems are ephemeral, which is fine, the webhook is canonical).
   try {
     const dir = path.join(process.cwd(), "data");
     await fs.mkdir(dir, { recursive: true });
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
       "utf8"
     );
   } catch {
-    // ignore — non-fatal
+    // ignore, non-fatal
   }
 
   // Optional: forward to a CRM / Slack / Zapier webhook if configured.
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
         body: JSON.stringify(lead),
       });
     } catch {
-      // ignore — the lead is already captured locally
+      // ignore, the lead is already captured locally
     }
   }
 

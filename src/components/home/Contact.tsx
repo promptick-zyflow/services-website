@@ -27,7 +27,7 @@ export function Contact({
 
             <ul className="mt-8 space-y-3">
               {[
-                "Free scoping workshop — no commitment",
+                "Free scoping workshop, no commitment",
                 "Pilot measured against your own baseline",
                 "Human review gates from day one",
               ].map((point) => (

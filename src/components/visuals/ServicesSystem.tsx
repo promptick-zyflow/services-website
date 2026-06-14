@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "motion/react";
+import { track, EVENTS } from "@/lib/mixpanel";
 
 /**
  * Services as a system map: four service offerings surround a glowing
@@ -183,6 +184,13 @@ export function ServicesSystem() {
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(n.key)}
                 onBlur={() => setActive(null)}
+                onClick={() =>
+                  track(EVENTS.clickedButton, {
+                    label: n.label,
+                    destination: n.href,
+                    location: "services-system",
+                  })
+                }
                 className="svc-chip group/node glass flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-primary)_45%,transparent)]"
               >
                 <span
@@ -233,7 +241,17 @@ export function ServicesSystem() {
       <ul className="space-y-px overflow-hidden rounded-2xl border border-line bg-line lg:hidden">
         {nodes.map((n) => (
           <li key={n.key}>
-            <Link href={n.href} className="svc-chip flex gap-4 bg-surface p-5">
+            <Link
+              href={n.href}
+              onClick={() =>
+                track(EVENTS.clickedButton, {
+                  label: n.label,
+                  destination: n.href,
+                  location: "services-system",
+                })
+              }
+              className="svc-chip flex gap-4 bg-surface p-5"
+            >
               <span
                 className="grid shrink-0 place-items-center rounded-lg border border-line bg-ink"
                 style={{ height: "2.75rem", width: "2.75rem" }}

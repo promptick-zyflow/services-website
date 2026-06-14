@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Primitives";
 import { Select } from "@/components/ui/Select";
+import { track, EVENTS } from "@/lib/mixpanel";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -17,6 +18,14 @@ const interests = [
 export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const startedTracked = useRef(false);
+
+  // First time the user focuses any field — the top of the funnel.
+  function onFirstInteract() {
+    if (startedTracked.current) return;
+    startedTracked.current = true;
+    track(EVENTS.startedLeadForm, { interest: defaultInterest });
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,11 +35,14 @@ export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
 
-    // Honeypot
+    // Honeypot — a bot filled the hidden field; fake success, don't track.
     if (data.company_website) {
       setStatus("success");
       return;
     }
+
+    const interest = typeof data.interest === "string" ? data.interest : undefined;
+    track(EVENTS.submittedLeadForm, { interest });
 
     try {
       const res = await fetch("/api/lead", {
@@ -43,10 +55,13 @@ export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
         throw new Error(body.error || "Something went wrong.");
       }
       setStatus("success");
+      track(EVENTS.completedLeadForm, { interest });
       form.reset();
     } catch (err) {
+      const reason = err instanceof Error ? err.message : "Something went wrong.";
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Something went wrong.");
+      setError(reason);
+      track(EVENTS.failedLeadForm, { interest, reason });
     }
   }
 
@@ -76,7 +91,7 @@ export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="glass rounded-2xl p-7 sm:p-8">
+    <form onSubmit={onSubmit} onFocus={onFirstInteract} className="glass rounded-2xl p-7 sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Name" name="name" required placeholder="Alex Morgan" />
         <Field
@@ -96,6 +111,7 @@ export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
             name="interest"
             options={interests}
             defaultValue={defaultInterest ?? interests[interests.length - 1]}
+            onChange={(value) => track(EVENTS.selectedInterest, { interest: value })}
           />
         </div>
       </div>
@@ -132,6 +148,7 @@ export function LeadForm({ defaultInterest }: { defaultInterest?: string }) {
         <Button
           type="submit"
           variant="primary"
+          noTrack
           disabled={status === "submitting"}
           className="w-full sm:w-auto disabled:opacity-60"
         >

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { site } from "@/lib/site";
 import { agents } from "@/lib/agents";
+import { TrackedLink } from "@/components/site/TrackedLink";
 
 export function Footer() {
   return (
@@ -36,12 +36,14 @@ export function Footer() {
               {agents.map((a) => (
                 <li key={a.slug}>
                   {a.href ? (
-                    <Link
+                    <TrackedLink
                       href={a.href}
+                      event="clicked-footer-link"
+                      eventProps={{ label: a.name, destination: a.href, group: "agents" }}
                       className="text-muted transition-colors hover:text-bone"
                     >
                       {a.name}
-                    </Link>
+                    </TrackedLink>
                   ) : (
                     <span className="text-muted">
                       {a.name}
@@ -60,12 +62,14 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               {site.footerGroups.services.map((n) => (
                 <li key={n.href}>
-                  <Link
+                  <TrackedLink
                     href={n.href}
+                    event="clicked-footer-link"
+                    eventProps={{ label: n.label, destination: n.href, group: "services" }}
                     className="text-muted transition-colors hover:text-bone"
                   >
                     {n.label}
-                  </Link>
+                  </TrackedLink>
                 </li>
               ))}
             </ul>
@@ -76,12 +80,14 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               {site.footerGroups.products.map((n) => (
                 <li key={n.href}>
-                  <Link
+                  <TrackedLink
                     href={n.href}
+                    event="clicked-footer-link"
+                    eventProps={{ label: n.label, destination: n.href, group: "products" }}
                     className="text-muted transition-colors hover:text-bone"
                   >
                     {n.label}
-                  </Link>
+                  </TrackedLink>
                 </li>
               ))}
             </ul>
@@ -92,12 +98,14 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               {site.footerGroups.company.map((n) => (
                 <li key={n.href}>
-                  <Link
+                  <TrackedLink
                     href={n.href}
+                    event="clicked-footer-link"
+                    eventProps={{ label: n.label, destination: n.href, group: "company" }}
                     className="text-muted transition-colors hover:text-bone"
                   >
                     {n.label}
-                  </Link>
+                  </TrackedLink>
                 </li>
               ))}
             </ul>

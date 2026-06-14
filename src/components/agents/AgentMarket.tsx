@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Section, accentVar, cx } from "@/components/ui/Primitives";
 import { agents, moreAgents } from "@/lib/agents";
+import { track, EVENTS } from "@/lib/mixpanel";
 
 /* ------------------------------------------------------------------
    Agent marketplace: a sidebar of collections, categories and search,
@@ -40,10 +41,25 @@ export function AgentMarket() {
         )
       : [];
 
+  const resultsCount = liveVisible.length + labVisible.length;
+
+  // Track searches once the user pauses typing, not on every keystroke.
+  useEffect(() => {
+    const q2 = query.trim();
+    if (!q2) return;
+    const t = setTimeout(() => {
+      track(EVENTS.searchedAgents, { query: q2, results: resultsCount });
+    }, 600);
+    return () => clearTimeout(t);
+  }, [query, resultsCount]);
+
   const FilterButton = ({ f }: { f: Filter }) => (
     <button
       type="button"
-      onClick={() => setFilter(f)}
+      onClick={() => {
+        track(EVENTS.clickedButton, { label: f, location: "agent-filter" });
+        setFilter(f);
+      }}
       className={cx(
         "flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-colors duration-200",
         filter === f
@@ -127,6 +143,14 @@ export function AgentMarket() {
                   <Link
                     key={a.slug}
                     href={a.href ?? "#"}
+                    onClick={() =>
+                      track(EVENTS.clickedAgentCard, {
+                        agent: a.slug,
+                        codename: a.codename,
+                        location: "marketplace",
+                        flagship: !!flagship,
+                      })
+                    }
                     className="grain-card group relative flex min-h-[23rem] flex-col overflow-hidden rounded-3xl border border-line bg-gradient-to-b from-surface to-ink p-7 transition-transform duration-300 hover:-translate-y-1"
                   >
                     {/* flagship corner ribbon */}

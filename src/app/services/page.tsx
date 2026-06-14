@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
+import { TrackedLink } from "@/components/site/TrackedLink";
+import { SectionView } from "@/components/site/SectionView";
 import { Process } from "@/components/home/Process";
 import { Customers } from "@/components/home/Customers";
 import { Contact } from "@/components/home/Contact";
@@ -17,13 +18,13 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <Hero />
-      <Customers />
-      <Problem />
-      <Offerings />
-      <Bridge />
-      <Process />
-      <Pricing />
+      <SectionView name="services-hero"><Hero /></SectionView>
+      <SectionView name="customers"><Customers /></SectionView>
+      <SectionView name="problem"><Problem /></SectionView>
+      <SectionView name="offerings"><Offerings /></SectionView>
+      <SectionView name="bridge"><Bridge /></SectionView>
+      <SectionView name="process"><Process /></SectionView>
+      <SectionView name="pricing"><Pricing /></SectionView>
       <Contact
         defaultInterest="AI services"
         heading="Bring us your hardest workflow."
@@ -201,9 +202,14 @@ function Bridge() {
         <p className="mx-auto mt-5 max-w-xl text-sm text-muted">
           These services stand on their own, including software with nothing
           to do with AI. When a workflow is a fit, our ready-made{" "}
-          <Link href="/#agents" className="text-bone underline underline-offset-4 hover:text-glacier">
+          <TrackedLink
+            href="/#agents"
+            event="clicked-button"
+            eventProps={{ label: "agents", destination: "/#agents", location: "services-bridge" }}
+            className="text-bone underline underline-offset-4 hover:text-glacier"
+          >
             agents
-          </Link>{" "}
+          </TrackedLink>{" "}
           are the fastest way in.
         </p>
       </div>

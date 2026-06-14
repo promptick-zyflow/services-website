@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section, Eyebrow, Button } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
+import { SectionView } from "@/components/site/SectionView";
 
 export const metadata: Metadata = {
   title: "About",
@@ -12,12 +13,12 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Hero />
-      <MissionVision />
-      <TwoFronts />
-      <Founders />
-      <Values />
-      <Group />
+      <SectionView name="about-hero"><Hero /></SectionView>
+      <SectionView name="mission-vision"><MissionVision /></SectionView>
+      <SectionView name="two-fronts"><TwoFronts /></SectionView>
+      <SectionView name="founders"><Founders /></SectionView>
+      <SectionView name="values"><Values /></SectionView>
+      <SectionView name="group"><Group /></SectionView>
     </>
   );
 }

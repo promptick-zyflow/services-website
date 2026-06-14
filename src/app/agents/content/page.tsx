@@ -68,7 +68,7 @@ export default function ContentPage() {
       />
 
       {/* Two-agent profiles */}
-      <Section id="how" className="py-24">
+      <Section id="how" view="the-model" className="py-24">
         <div className="max-w-2xl">
           <Eyebrow>The model</Eyebrow>
           <h2 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl">

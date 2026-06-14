@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Section, Eyebrow, accentVar, cx } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/site/Reveal";
+import { TrackedLink } from "@/components/site/TrackedLink";
 import { agents, moreAgents, type Agent } from "@/lib/agents";
 
 export function AgentsRoster() {
@@ -62,17 +62,14 @@ export function AgentsRoster() {
 ------------------------------------------------------------------ */
 export function AgentCard({ agent, featured }: { agent: Agent; featured?: boolean }) {
   const accent = accentVar(agent.accent);
-  const Wrapper = agent.href ? Link : "div";
+  const cls = cx(
+    "group relative flex flex-col h-full overflow-hidden rounded-3xl border border-line bg-surface transition-all duration-500",
+    agent.href && "hover:-translate-y-1 hover:border-bone/25",
+    featured ? "min-h-[22rem] p-9 sm:p-12" : "min-h-[20rem] p-8"
+  );
 
-  return (
-    <Wrapper
-      href={agent.href ?? "#"}
-      className={cx(
-        "group relative flex flex-col h-full overflow-hidden rounded-3xl border border-line bg-surface transition-all duration-500",
-        agent.href && "hover:-translate-y-1 hover:border-bone/25",
-        featured ? "min-h-[22rem] p-9 sm:p-12" : "min-h-[20rem] p-8"
-      )}
-    >
+  const content = (
+    <>
       {/* Accent gradient wash, intensifies on hover */}
       <div
         className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-700 group-hover:opacity-100"
@@ -190,6 +187,20 @@ export function AgentCard({ agent, featured }: { agent: Agent; featured?: boolea
           </div>
         </div>
       </div>
-    </Wrapper>
+    </>
   );
+
+  if (agent.href) {
+    return (
+      <TrackedLink
+        href={agent.href}
+        event="clicked-agent-card"
+        eventProps={{ agent: agent.slug, location: "roster", featured: !!featured }}
+        className={cls}
+      >
+        {content}
+      </TrackedLink>
+    );
+  }
+  return <div className={cls}>{content}</div>;
 }
